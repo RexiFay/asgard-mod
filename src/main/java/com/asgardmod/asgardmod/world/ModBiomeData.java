@@ -1,22 +1,16 @@
 package com.asgardmod.asgardmod.world;
 
-import net.minecraft.core.HolderGetter;
-import net.minecraft.core.HolderSet;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.level.biome.*;
-import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-
-import java.util.List;
 
 public class ModBiomeData {
 
-    private static BiomeGenerationSettings.Builder baseGenSettings() {
-        return new BiomeGenerationSettings.PlainBuilder();
+    private static BiomeGenerationSettings emptyGenSettings() {
+        return BiomeGenerationSettings.EMPTY;
     }
 
-    private static MobSpawnSettings.Builder noMobSpawns() {
-        return new MobSpawnSettings.Builder();
+    private static MobSpawnSettings noMobSpawns() {
+        return MobSpawnSettings.EMPTY;
     }
 
     // -------------------------
@@ -38,8 +32,8 @@ public class ModBiomeData {
                 .temperature(0.85f)
                 .downfall(0.0f)
                 .specialEffects(effects)
-                .mobSpawnSettings(noMobSpawns().build())
-                .generationSettings(baseGenSettings().build())
+                .mobSpawnSettings(noMobSpawns())
+                .generationSettings(emptyGenSettings())
                 .build();
     }
 
@@ -58,8 +52,8 @@ public class ModBiomeData {
                 .temperature(0.9f)
                 .downfall(0.0f)
                 .specialEffects(effects)
-                .mobSpawnSettings(noMobSpawns().build())
-                .generationSettings(baseGenSettings().build())
+                .mobSpawnSettings(noMobSpawns())
+                .generationSettings(emptyGenSettings())
                 .build();
     }
 
@@ -78,8 +72,8 @@ public class ModBiomeData {
                 .temperature(0.7f)
                 .downfall(0.0f)
                 .specialEffects(effects)
-                .mobSpawnSettings(noMobSpawns().build())
-                .generationSettings(baseGenSettings().build())
+                .mobSpawnSettings(noMobSpawns())
+                .generationSettings(emptyGenSettings())
                 .build();
     }
 
@@ -98,8 +92,8 @@ public class ModBiomeData {
                 .temperature(0.85f)
                 .downfall(0.05f)
                 .specialEffects(effects)
-                .mobSpawnSettings(noMobSpawns().build())
-                .generationSettings(baseGenSettings().build())
+                .mobSpawnSettings(noMobSpawns())
+                .generationSettings(emptyGenSettings())
                 .build();
     }
 
@@ -121,8 +115,8 @@ public class ModBiomeData {
                 .temperature(0.3f)
                 .downfall(0.4f)
                 .specialEffects(effects)
-                .mobSpawnSettings(noMobSpawns().build())
-                .generationSettings(baseGenSettings().build())
+                .mobSpawnSettings(noMobSpawns())
+                .generationSettings(emptyGenSettings())
                 .build();
     }
 
@@ -141,8 +135,8 @@ public class ModBiomeData {
                 .temperature(0.7f)
                 .downfall(0.3f)
                 .specialEffects(effects)
-                .mobSpawnSettings(noMobSpawns().build())
-                .generationSettings(baseGenSettings().build())
+                .mobSpawnSettings(noMobSpawns())
+                .generationSettings(emptyGenSettings())
                 .build();
     }
 
@@ -158,8 +152,8 @@ public class ModBiomeData {
                 .temperature(0.5f)
                 .downfall(0.5f)
                 .specialEffects(effects)
-                .mobSpawnSettings(noMobSpawns().build())
-                .generationSettings(baseGenSettings().build())
+                .mobSpawnSettings(noMobSpawns())
+                .generationSettings(emptyGenSettings())
                 .build();
     }
 
@@ -171,15 +165,14 @@ public class ModBiomeData {
                 .skyColor(0xF1F8E9)
                 .grassColorOverride(0xAED581)
                 .foliageColorOverride(0x9CCC65)
-                .ambientParticle(new AmbientParticleSettings(ParticleTypes.FALLING_SPORE_BLOSSOM, 0.0001f))
                 .build();
         return new Biome.BiomeBuilder()
                 .hasPrecipitation(true)
                 .temperature(0.8f)
                 .downfall(0.2f)
                 .specialEffects(effects)
-                .mobSpawnSettings(noMobSpawns().build())
-                .generationSettings(baseGenSettings().build())
+                .mobSpawnSettings(noMobSpawns())
+                .generationSettings(emptyGenSettings())
                 .build();
     }
 
@@ -197,8 +190,8 @@ public class ModBiomeData {
                 .temperature(0.5f)
                 .downfall(0.1f)
                 .specialEffects(effects)
-                .mobSpawnSettings(noMobSpawns().build())
-                .generationSettings(baseGenSettings().build())
+                .mobSpawnSettings(noMobSpawns())
+                .generationSettings(emptyGenSettings())
                 .build();
     }
 
@@ -217,8 +210,8 @@ public class ModBiomeData {
                 .temperature(0.9f)
                 .downfall(0.9f)
                 .specialEffects(effects)
-                .mobSpawnSettings(noMobSpawns().build())
-                .generationSettings(baseGenSettings().build())
+                .mobSpawnSettings(noMobSpawns())
+                .generationSettings(emptyGenSettings())
                 .build();
     }
 
@@ -237,8 +230,8 @@ public class ModBiomeData {
                 .temperature(0.7f)
                 .downfall(0.8f)
                 .specialEffects(effects)
-                .mobSpawnSettings(noMobSpawns().build())
-                .generationSettings(baseGenSettings().build())
+                .mobSpawnSettings(noMobSpawns())
+                .generationSettings(emptyGenSettings())
                 .build();
     }
 
@@ -257,8 +250,8 @@ public class ModBiomeData {
                 .temperature(0.7f)
                 .downfall(0.1f)
                 .specialEffects(effects)
-                .mobSpawnSettings(noMobSpawns().build())
-                .generationSettings(baseGenSettings().build())
+                .mobSpawnSettings(noMobSpawns())
+                .generationSettings(emptyGenSettings())
                 .build();
     }
 }
