@@ -1,17 +1,60 @@
 {
   "type": "asgardmod:gods_domain",
   "generator": {
-    "type": "minecraft:flat",
-    "settings": {
-      "layers": [
-        { "block": "minecraft:bedrock", "height": 1 },
-        { "block": "minecraft:stone", "height": 58 },
-        { "block": "minecraft:dirt", "height": 3 },
-        { "block": "minecraft:grass_block", "height": 1 }
-      ],
-      "biome": "minecraft:plains",
-      "features": false,
-      "lakes": false
+    "type": "minecraft:noise",
+    "settings": "minecraft:overworld",
+    "biome_source": {
+      "type": "minecraft:multi_noise",
+      "biomes": [
+        {
+          "biome": "asgardmod:celestial_meadow",
+          "parameters": {
+            "temperature": { "min": 0.1, "max": 1.0 },
+            "humidity": { "min": -1.0, "max": 0.0 },
+            "continentalness": { "min": -0.11, "max": 0.55 },
+            "erosion": { "min": -0.375, "max": 0.45 },
+            "weirdness": { "min": -1.0, "max": 1.0 },
+            "depth": { "min": 0.0, "max": 0.0 },
+            "offset": 0.0
+          }
+        },
+        {
+          "biome": "asgardmod:cloud_plateau",
+          "parameters": {
+            "temperature": { "min": -1.0, "max": 0.1 },
+            "humidity": { "min": -1.0, "max": -0.2 },
+            "continentalness": { "min": 0.55, "max": 1.0 },
+            "erosion": { "min": -1.0, "max": -0.375 },
+            "weirdness": { "min": -1.0, "max": 1.0 },
+            "depth": { "min": 0.0, "max": 0.0 },
+            "offset": 0.0
+          }
+        },
+        {
+          "biome": "asgardmod:divine_crystal_forest",
+          "parameters": {
+            "temperature": { "min": 0.1, "max": 1.0 },
+            "humidity": { "min": 0.0, "max": 1.0 },
+            "continentalness": { "min": 0.03, "max": 0.55 },
+            "erosion": { "min": -0.375, "max": 0.45 },
+            "weirdness": { "min": -1.0, "max": 1.0 },
+            "depth": { "min": 0.0, "max": 0.0 },
+            "offset": 0.0
+          }
+        },
+        {
+          "biome": "asgardmod:sacred_hills",
+          "parameters": {
+            "temperature": { "min": -1.0, "max": 1.0 },
+            "humidity": { "min": -0.2, "max": 1.0 },
+            "continentalness": { "min": 0.3, "max": 1.0 },
+            "erosion": { "min": -0.375, "max": 0.45 },
+            "weirdness": { "min": -1.0, "max": 1.0 },
+            "depth": { "min": 0.0, "max": 0.0 },
+            "offset": 0.0
+          }
+        }
+      ]
     }
   }
 }
