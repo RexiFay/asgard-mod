@@ -3,6 +3,7 @@ package com.asgardmod.asgardmod.datagen;
 import com.asgardmod.asgardmod.block.ModBlocks;
 import com.asgardmod.asgardmod.dimension.ModDimensions;
 import com.asgardmod.asgardmod.world.ModBiomes;
+import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
@@ -10,6 +11,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.*;
+import net.minecraft.world.level.levelgen.presets.WorldPresets;
 import net.minecraftforge.common.data.DatapackBuiltinEntriesProvider;
 
 import java.util.List;
@@ -29,13 +31,18 @@ public class ModWorldgenProvider extends DatapackBuiltinEntriesProvider {
 
     private static void bootstrapNoise(BootstapContext<NoiseGeneratorSettings> ctx) {
 
-        // Shared noise router — we reuse the overworld noise router via
-        // NoiseRouterData.overworld(). Both dimensions use surface-style
-        // terrain; we only differ in NoiseSettings + surface rules.
-        var noises = ctx.lookup(Registries.NOISE);
-        var densityFunctions = ctx.lookup(Registries.DENSITY_FUNCTION);
+        // Borrow the noise router from vanilla overworld settings.
+        // NoiseRouterData.overworld() is protected; the safe public way
+        // is to look up the already-registered overworld NoiseGeneratorSettings
+        // and reuse its NoiseRouter directly.
+        HolderGetter<NoiseGeneratorSettings> noiseSettingsGetter =
+            ctx.lookup(Registries.NOISE_SETTINGS);
+        NoiseRouter borrowedRouter = noiseSettingsGetter
+            .getOrThrow(NoiseGeneratorSettings.OVERWORLD)
+            .value()
+            .noiseRouter();
 
-        // ── GOD'S DOMAIN ──────────────────────────────────────────────────
+        // ── GOD'S DOMAIN surface rules ───────────────────────────────────
         SurfaceRules.RuleSource godsDomainSurface = SurfaceRules.sequence(
             SurfaceRules.ifTrue(
                 SurfaceRules.abovePreliminarySurface(),
@@ -57,7 +64,7 @@ public class ModWorldgenProvider extends DatapackBuiltinEntriesProvider {
             new NoiseSettings(0, 256, 1, 2),
             ModBlocks.DIVINE_STONE.get().defaultBlockState(),
             Blocks.WATER.defaultBlockState(),
-            NoiseRouterData.overworld(densityFunctions, noises, false, false),
+            borrowedRouter,
             godsDomainSurface,
             List.of(),   // spawnTarget
             63,          // seaLevel
@@ -67,7 +74,7 @@ public class ModWorldgenProvider extends DatapackBuiltinEntriesProvider {
             false        // legacyRandomSource
         ));
 
-        // ── ASGARD ─────────────────────────────────────────────────────────
+        // ── ASGARD surface rules ────────────────────────────────────────
         SurfaceRules.RuleSource asgardSurface = SurfaceRules.sequence(
             SurfaceRules.ifTrue(
                 SurfaceRules.abovePreliminarySurface(),
@@ -99,7 +106,7 @@ public class ModWorldgenProvider extends DatapackBuiltinEntriesProvider {
             new NoiseSettings(-64, 384, 1, 2),
             ModBlocks.JADE_STONE.get().defaultBlockState(),
             Blocks.WATER.defaultBlockState(),
-            NoiseRouterData.overworld(densityFunctions, noises, false, false),
+            borrowedRouter,
             asgardSurface,
             List.of(),
             40,    // seaLevel — deep oceans
