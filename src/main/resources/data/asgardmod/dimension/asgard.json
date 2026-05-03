@@ -1,0 +1,11 @@
+{
+  "type": "asgardmod:asgard",
+  "generator": {
+    "type": "minecraft:noise",
+    "settings": "minecraft:overworld",
+    "biome_source": {
+      "type": "minecraft:fixed",
+      "biome": "asgardmod:jade_peaks"
+    }
+  }
+}

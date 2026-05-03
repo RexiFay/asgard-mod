@@ -1,0 +1,16 @@
+{
+  "type": "asgardmod:gods_domain",
+  "generator": {
+    "type": "minecraft:flat",
+    "settings": {
+      "layers": [
+        { "block": "asgardmod:divine_stone", "height": 1 },
+        { "block": "asgardmod:divine_stone", "height": 60 },
+        { "block": "asgardmod:divine_grass", "height": 1 }
+      ],
+      "biome": "asgardmod:celestial_meadow",
+      "features": false,
+      "lakes": false
+    }
+  }
+}
