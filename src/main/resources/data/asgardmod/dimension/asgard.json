@@ -1,18 +1,156 @@
 {
   "type": "asgardmod:asgard",
   "generator": {
-    "type": "minecraft:flat",
-    "settings": {
-      "layers": [
-        { "block": "minecraft:bedrock", "height": 1 },
-        { "block": "minecraft:deepslate", "height": 30 },
-        { "block": "minecraft:stone", "height": 30 },
-        { "block": "minecraft:dirt", "height": 3 },
-        { "block": "minecraft:grass_block", "height": 1 }
-      ],
-      "biome": "minecraft:plains",
-      "features": false,
-      "lakes": false
+    "type": "minecraft:noise",
+    "settings": "minecraft:overworld",
+    "biome_source": {
+      "type": "minecraft:multi_noise",
+      "biomes": [
+        {
+          "biome": "asgardmod:asgard_ocean",
+          "parameters": {
+            "temperature": { "min": -1.0, "max": 1.0 },
+            "humidity": { "min": -1.0, "max": 1.0 },
+            "continentalness": { "min": -1.05, "max": -0.45 },
+            "erosion": { "min": -1.0, "max": 1.0 },
+            "weirdness": { "min": -1.0, "max": 1.0 },
+            "depth": { "min": 0.0, "max": 0.0 },
+            "offset": 0.0
+          }
+        },
+        {
+          "biome": "asgardmod:asgard_plains",
+          "parameters": {
+            "temperature": { "min": -0.1, "max": 0.35 },
+            "humidity": { "min": -0.35, "max": 0.1 },
+            "continentalness": { "min": -0.11, "max": 0.55 },
+            "erosion": { "min": -0.375, "max": 0.45 },
+            "weirdness": { "min": -0.05, "max": 0.05 },
+            "depth": { "min": 0.0, "max": 0.0 },
+            "offset": 0.0
+          }
+        },
+        {
+          "biome": "asgardmod:celestial_meadow",
+          "parameters": {
+            "temperature": { "min": 0.2, "max": 0.55 },
+            "humidity": { "min": -0.5, "max": -0.1 },
+            "continentalness": { "min": 0.03, "max": 0.55 },
+            "erosion": { "min": -0.375, "max": 0.05 },
+            "weirdness": { "min": 0.05, "max": 0.4 },
+            "depth": { "min": 0.0, "max": 0.0 },
+            "offset": 0.0
+          }
+        },
+        {
+          "biome": "asgardmod:cloud_plateau",
+          "parameters": {
+            "temperature": { "min": -0.3, "max": 0.2 },
+            "humidity": { "min": -1.0, "max": -0.5 },
+            "continentalness": { "min": 0.55, "max": 1.0 },
+            "erosion": { "min": -1.0, "max": -0.375 },
+            "weirdness": { "min": -0.2, "max": 0.2 },
+            "depth": { "min": 0.0, "max": 0.0 },
+            "offset": 0.0
+          }
+        },
+        {
+          "biome": "asgardmod:divine_crystal_forest",
+          "parameters": {
+            "temperature": { "min": 0.2, "max": 0.55 },
+            "humidity": { "min": 0.1, "max": 0.5 },
+            "continentalness": { "min": 0.03, "max": 0.55 },
+            "erosion": { "min": -0.375, "max": 0.1 },
+            "weirdness": { "min": -0.4, "max": -0.05 },
+            "depth": { "min": 0.0, "max": 0.0 },
+            "offset": 0.0
+          }
+        },
+        {
+          "biome": "asgardmod:golden_forest",
+          "parameters": {
+            "temperature": { "min": 0.05, "max": 0.4 },
+            "humidity": { "min": -0.1, "max": 0.3 },
+            "continentalness": { "min": -0.11, "max": 0.3 },
+            "erosion": { "min": -0.125, "max": 0.45 },
+            "weirdness": { "min": 0.05, "max": 0.5 },
+            "depth": { "min": 0.0, "max": 0.0 },
+            "offset": 0.0
+          }
+        },
+        {
+          "biome": "asgardmod:heaven_pillar_forest",
+          "parameters": {
+            "temperature": { "min": 0.3, "max": 1.0 },
+            "humidity": { "min": 0.3, "max": 1.0 },
+            "continentalness": { "min": 0.03, "max": 0.55 },
+            "erosion": { "min": -0.375, "max": 0.55 },
+            "weirdness": { "min": -0.5, "max": -0.2 },
+            "depth": { "min": 0.0, "max": 0.0 },
+            "offset": 0.0
+          }
+        },
+        {
+          "biome": "asgardmod:jade_peaks",
+          "parameters": {
+            "temperature": { "min": -1.0, "max": -0.25 },
+            "humidity": { "min": -1.0, "max": 0.0 },
+            "continentalness": { "min": 0.55, "max": 1.0 },
+            "erosion": { "min": -1.0, "max": -0.2 },
+            "weirdness": { "min": -1.0, "max": 1.0 },
+            "depth": { "min": 0.0, "max": 0.0 },
+            "offset": 0.0
+          }
+        },
+        {
+          "biome": "asgardmod:jade_river_karst",
+          "parameters": {
+            "temperature": { "min": 0.3, "max": 1.0 },
+            "humidity": { "min": 0.1, "max": 0.5 },
+            "continentalness": { "min": -0.45, "max": 0.03 },
+            "erosion": { "min": 0.45, "max": 1.0 },
+            "weirdness": { "min": -1.0, "max": 1.0 },
+            "depth": { "min": 0.0, "max": 0.0 },
+            "offset": 0.0
+          }
+        },
+        {
+          "biome": "asgardmod:sacred_hills",
+          "parameters": {
+            "temperature": { "min": 0.15, "max": 0.55 },
+            "humidity": { "min": -0.5, "max": -0.1 },
+            "continentalness": { "min": 0.3, "max": 1.0 },
+            "erosion": { "min": -0.375, "max": -0.0625 },
+            "weirdness": { "min": 0.2, "max": 0.7 },
+            "depth": { "min": 0.0, "max": 0.0 },
+            "offset": 0.0
+          }
+        },
+        {
+          "biome": "asgardmod:sky_piercer",
+          "parameters": {
+            "temperature": { "min": -0.45, "max": 0.3 },
+            "humidity": { "min": -1.0, "max": -0.35 },
+            "continentalness": { "min": 0.7, "max": 1.0 },
+            "erosion": { "min": -1.0, "max": -0.5 },
+            "weirdness": { "min": 0.4, "max": 1.0 },
+            "depth": { "min": 0.0, "max": 0.0 },
+            "offset": 0.0
+          }
+        },
+        {
+          "biome": "asgardmod:sword_plains",
+          "parameters": {
+            "temperature": { "min": 0.1, "max": 0.55 },
+            "humidity": { "min": -0.35, "max": 0.1 },
+            "continentalness": { "min": -0.11, "max": 0.55 },
+            "erosion": { "min": 0.1, "max": 0.55 },
+            "weirdness": { "min": -0.5, "max": -0.05 },
+            "depth": { "min": 0.0, "max": 0.0 },
+            "offset": 0.0
+          }
+        }
+      ]
     }
   }
 }
