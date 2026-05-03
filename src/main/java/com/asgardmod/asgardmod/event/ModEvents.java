@@ -1,9 +1,11 @@
 package com.asgardmod.asgardmod.event;
 
 import com.asgardmod.asgardmod.AsgardMod;
+import com.asgardmod.asgardmod.block.ModBlocks;
 import com.asgardmod.asgardmod.dimension.ModDimensions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
@@ -25,7 +27,7 @@ public class ModEvents {
 
         var block = level.getBlockState(pos).getBlock();
 
-        if (block == com.asgardmod.asgardmod.block.ModBlocks.GODS_DOMAIN_PORTAL.get()) {
+        if (block == ModBlocks.GODS_DOMAIN_PORTAL.get()) {
             if (level.dimension() == ModDimensions.GODS_DOMAIN) {
                 travelToLevel(serverPlayer, Level.OVERWORLD, pos);
                 player.displayClientMessage(Component.literal("§bReturning to the mortal realm..."), true);
@@ -36,7 +38,7 @@ public class ModEvents {
             event.setCanceled(true);
         }
 
-        if (block == com.asgardmod.asgardmod.block.ModBlocks.ASGARD_PORTAL.get()) {
+        if (block == ModBlocks.ASGARD_PORTAL.get()) {
             if (level.dimension() == ModDimensions.ASGARD) {
                 travelToLevel(serverPlayer, Level.OVERWORLD, pos);
                 player.displayClientMessage(Component.literal("§6Descending from Asgard..."), true);

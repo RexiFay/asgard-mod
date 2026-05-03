@@ -1,20 +1,18 @@
 package com.asgardmod.asgardmod.world;
 
 import net.minecraft.core.HolderGetter;
+import net.minecraft.core.HolderSet;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.sounds.Musics;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.biome.*;
 import net.minecraft.world.level.levelgen.carver.ConfiguredWorldCarver;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
+import java.util.List;
+
 public class ModBiomeData {
 
     private static BiomeGenerationSettings.Builder baseGenSettings() {
-        return new BiomeGenerationSettings.Builder(
-                net.minecraft.data.worldgen.placement.MiscOverworldPlacements.EMPTY_HOLDER_SET,
-                net.minecraft.data.worldgen.placement.MiscOverworldPlacements.EMPTY_HOLDER_SET
-        );
+        return new BiomeGenerationSettings.PlainBuilder();
     }
 
     private static MobSpawnSettings.Builder noMobSpawns() {
@@ -136,7 +134,7 @@ public class ModBiomeData {
                 .skyColor(0xFFFDE7)
                 .grassColorOverride(0xDCE775)
                 .foliageColorOverride(0xFFD740)
-                .ambientParticle(new AmbientParticleSettings(ParticleTypes.FALLING_GOLDEN_DRIP_ICON, 0.0002f))
+                .ambientParticle(new AmbientParticleSettings(ParticleTypes.FALLING_SPORE_BLOSSOM, 0.0002f))
                 .build();
         return new Biome.BiomeBuilder()
                 .hasPrecipitation(true)
@@ -173,7 +171,7 @@ public class ModBiomeData {
                 .skyColor(0xF1F8E9)
                 .grassColorOverride(0xAED581)
                 .foliageColorOverride(0x9CCC65)
-                .ambientParticle(new AmbientParticleSettings(ParticleTypes.FALLING_GOLDEN_DRIP_ICON, 0.0001f))
+                .ambientParticle(new AmbientParticleSettings(ParticleTypes.FALLING_SPORE_BLOSSOM, 0.0001f))
                 .build();
         return new Biome.BiomeBuilder()
                 .hasPrecipitation(true)
