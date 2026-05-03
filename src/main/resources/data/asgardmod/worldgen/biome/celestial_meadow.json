@@ -1,5 +1,5 @@
 {
-  "precipitation": "none",
+  "has_precipitation": false,
   "temperature": 0.8,
   "downfall": 0.0,
   "effects": {
@@ -15,15 +15,8 @@
     }
   },
   "spawners": {
-    "monster": [],
-    "creature": [
-      { "type": "minecraft:horse", "weight": 2, "minCount": 1, "maxCount": 3 }
-    ],
-    "ambient": [],
-    "water_creature": [],
-    "water_ambient": [],
-    "misc": [],
-    "underground_water_creature": []
+    "monster": [], "creature": [], "ambient": [],
+    "water_creature": [], "water_ambient": [], "misc": [], "underground_water_creature": []
   },
   "spawn_costs": {},
   "carvers": {},

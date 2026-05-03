@@ -1,25 +1,22 @@
 {
-  "precipitation": "none",
+  "has_precipitation": false,
   "temperature": 0.85,
   "downfall": 0.05,
   "effects": {
-    "sky_color": 8103167,
-    "fog_color": 15792383,
-    "water_color": 4159204,
-    "water_fog_color": 329011,
-    "grass_color": 11591679,
-    "foliage_color": 9756671
+    "sky_color": 16775655,
+    "fog_color": 16777190,
+    "water_color": 8508154,
+    "water_fog_color": 5263607,
+    "grass_color": 11591643,
+    "foliage_color": 8438724,
+    "ambient_particle": {
+      "probability": 0.0002,
+      "options": { "type": "minecraft:end_rod" }
+    }
   },
   "spawners": {
-    "monster": [],
-    "creature": [
-      { "type": "minecraft:sheep", "weight": 2, "minCount": 1, "maxCount": 3 }
-    ],
-    "ambient": [],
-    "water_creature": [],
-    "water_ambient": [],
-    "misc": [],
-    "underground_water_creature": []
+    "monster": [], "creature": [], "ambient": [],
+    "water_creature": [], "water_ambient": [], "misc": [], "underground_water_creature": []
   },
   "spawn_costs": {},
   "carvers": {},

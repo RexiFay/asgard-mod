@@ -1,31 +1,18 @@
 {
-  "precipitation": "none",
+  "has_precipitation": false,
   "temperature": 0.5,
   "downfall": 0.1,
   "effects": {
-    "sky_color": 5000268,
-    "fog_color": 8355711,
-    "water_color": 4159204,
-    "water_fog_color": 329011,
-    "grass_color": 4407359,
-    "foliage_color": 4210752,
-    "ambient_particle": {
-      "probability": 0.0003,
-      "options": { "type": "minecraft:crit" }
-    }
+    "sky_color": 9873407,
+    "fog_color": 13684184,
+    "water_color": 4545124,
+    "water_fog_color": 2513464,
+    "grass_color": 9478318,
+    "foliage_color": 7901852
   },
   "spawners": {
-    "monster": [
-      { "type": "minecraft:zombie", "weight": 5, "minCount": 2, "maxCount": 4 },
-      { "type": "minecraft:skeleton", "weight": 5, "minCount": 1, "maxCount": 3 },
-      { "type": "minecraft:creeper", "weight": 3, "minCount": 1, "maxCount": 2 }
-    ],
-    "creature": [],
-    "ambient": [],
-    "water_creature": [],
-    "water_ambient": [],
-    "misc": [],
-    "underground_water_creature": []
+    "monster": [], "creature": [], "ambient": [],
+    "water_creature": [], "water_ambient": [], "misc": [], "underground_water_creature": []
   },
   "spawn_costs": {},
   "carvers": {},

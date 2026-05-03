@@ -1,23 +1,18 @@
 {
-  "precipitation": "none",
-  "temperature": 0.7,
+  "has_precipitation": false,
+  "temperature": 0.9,
   "downfall": 0.0,
   "effects": {
-    "sky_color": 8103167,
-    "fog_color": 16119260,
-    "water_color": 4159204,
-    "water_fog_color": 329011,
-    "grass_color": 14745599,
-    "foliage_color": 12713727
+    "sky_color": 8298911,
+    "fog_color": 16777215,
+    "water_color": 11860959,
+    "water_fog_color": 5255927,
+    "grass_color": 13432319,
+    "foliage_color": 11731186
   },
   "spawners": {
-    "monster": [],
-    "creature": [],
-    "ambient": [],
-    "water_creature": [],
-    "water_ambient": [],
-    "misc": [],
-    "underground_water_creature": []
+    "monster": [], "creature": [], "ambient": [],
+    "water_creature": [], "water_ambient": [], "misc": [], "underground_water_creature": []
   },
   "spawn_costs": {},
   "carvers": {},
