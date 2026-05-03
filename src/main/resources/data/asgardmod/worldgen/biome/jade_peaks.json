@@ -1,5 +1,5 @@
 {
-  "precipitation": "snow",
+  "has_precipitation": true,
   "temperature": -0.2,
   "downfall": 0.3,
   "effects": {
@@ -9,18 +9,11 @@
     "water_fog_color": 329011,
     "grass_color": 6394457,
     "foliage_color": 6394457,
-    "ambient_particle": {
-      "probability": 0.0003,
-      "options": { "type": "minecraft:snowflake" }
-    }
+    "ambient_particle": {"probability": 0.0003, "options": {"type": "minecraft:snowflake"}}
   },
   "spawners": {
-    "monster": [
-      { "type": "minecraft:skeleton", "weight": 5, "minCount": 1, "maxCount": 3 }
-    ],
-    "creature": [
-      { "type": "minecraft:goat", "weight": 3, "minCount": 1, "maxCount": 3 }
-    ],
+    "monster": [{"type": "minecraft:skeleton", "weight": 5, "minCount": 1, "maxCount": 3}],
+    "creature": [{"type": "minecraft:goat", "weight": 3, "minCount": 1, "maxCount": 3}],
     "ambient": [],
     "water_creature": [],
     "water_ambient": [],
@@ -29,5 +22,5 @@
   },
   "spawn_costs": {},
   "carvers": {},
-  "features": [[],[],[],[],[],[],[],[],[],[],[]]
+  "features": [[], [], [], [], [], [], [], [], [], [], []]
 }

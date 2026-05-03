@@ -1,5 +1,5 @@
 {
-  "precipitation": "none",
+  "has_precipitation": false,
   "temperature": 0.9,
   "downfall": 0.0,
   "effects": {
@@ -9,10 +9,7 @@
     "water_fog_color": 329011,
     "grass_color": 14221567,
     "foliage_color": 14221567,
-    "ambient_particle": {
-      "probability": 0.0008,
-      "options": { "type": "minecraft:white_ash" }
-    }
+    "ambient_particle": {"probability": 0.0008, "options": {"type": "minecraft:white_ash"}}
   },
   "spawners": {
     "monster": [],
@@ -25,5 +22,5 @@
   },
   "spawn_costs": {},
   "carvers": {},
-  "features": [[],[],[],[],[],[],[],[],[],[],[]]
+  "features": [[], [], [], [], [], [], [], [], [], [], []]
 }

@@ -1,6 +1,6 @@
 {
-  "precipitation": "none",
-  "temperature": 0.4,
+  "has_precipitation": false,
+  "temperature": 0.7,
   "downfall": 0.1,
   "effects": {
     "sky_color": 7249663,
@@ -9,15 +9,12 @@
     "water_fog_color": 329011,
     "grass_color": 6723891,
     "foliage_color": 6723891,
-    "ambient_particle": {
-      "probability": 0.0003,
-      "options": { "type": "minecraft:ash" }
-    }
+    "ambient_particle": {"probability": 0.0003, "options": {"type": "minecraft:ash"}}
   },
   "spawners": {
     "monster": [
-      { "type": "minecraft:skeleton", "weight": 8, "minCount": 1, "maxCount": 4 },
-      { "type": "minecraft:zombie", "weight": 5, "minCount": 1, "maxCount": 4 }
+      {"type": "minecraft:skeleton", "weight": 8, "minCount": 1, "maxCount": 4},
+      {"type": "minecraft:zombie", "weight": 5, "minCount": 1, "maxCount": 4}
     ],
     "creature": [],
     "ambient": [],
@@ -28,5 +25,5 @@
   },
   "spawn_costs": {},
   "carvers": {},
-  "features": [[],[],[],[],[],[],[],[],[],[],[]]
+  "features": [[], [], [], [], [], [], [], [], [], [], []]
 }
