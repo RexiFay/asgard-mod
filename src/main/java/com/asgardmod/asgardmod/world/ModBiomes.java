@@ -5,7 +5,6 @@ import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
@@ -18,15 +17,14 @@ import java.util.List;
 
 public class ModBiomes {
 
-    // ── Deferred register (needed so Forge knows biomes exist) ─────────────
     public static final DeferredRegister<Biome> BIOMES =
         DeferredRegister.create(ForgeRegistries.BIOMES, AsgardMod.MOD_ID);
 
-    // ── GOD'S DOMAIN biome keys ────────────────────────────────────────────
-    public static final ResourceKey<Biome> CELESTIAL_MEADOW     = key("celestial_meadow");
-    public static final ResourceKey<Biome> CLOUD_PLATEAU        = key("cloud_plateau");
+    // ── GOD'S DOMAIN biome keys ───────────────────────────────────────────
+    public static final ResourceKey<Biome> CELESTIAL_MEADOW      = key("celestial_meadow");
+    public static final ResourceKey<Biome> CLOUD_PLATEAU         = key("cloud_plateau");
     public static final ResourceKey<Biome> DIVINE_CRYSTAL_FOREST = key("divine_crystal_forest");
-    public static final ResourceKey<Biome> SACRED_HILLS         = key("sacred_hills");
+    public static final ResourceKey<Biome> SACRED_HILLS          = key("sacred_hills");
 
     // ── ASGARD biome keys ─────────────────────────────────────────────────
     public static final ResourceKey<Biome> JADE_PEAKS           = key("jade_peaks");
@@ -47,16 +45,23 @@ public class ModBiomes {
         return Climate.Parameter.span(a, b);
     }
 
-    /** temp, humidity, continentalness, erosion, weirdness — depth fixed at 0, offset 0 */
+    /**
+     * Build a ParameterPoint. The last argument (offset) is a long in 1.20.1
+     * — Climate.quantizeCoord(0f) == 0L.
+     */
     private static Climate.ParameterPoint params(
             Climate.Parameter temp, Climate.Parameter hum,
             Climate.Parameter cont, Climate.Parameter ero,
             Climate.Parameter weird) {
-        return new Climate.ParameterPoint(temp, hum, cont, ero,
-            Climate.Parameter.point(0f), weird, 0f);
+        return new Climate.ParameterPoint(
+            temp, hum, cont, ero,
+            Climate.Parameter.point(0f),  // depth
+            weird,
+            0L                            // offset — must be long, not float
+        );
     }
 
-    // ── GOD'S DOMAIN pairs ─────────────────────────────────────────────────
+    // ── GOD'S DOMAIN pairs ────────────────────────────────────────────────
     public static List<Pair<Climate.ParameterPoint, Holder<Biome>>>
     godsDomainPairs(HolderGetter<Biome> getter) {
         return List.of(
@@ -71,7 +76,7 @@ public class ModBiomes {
         );
     }
 
-    // ── ASGARD pairs ───────────────────────────────────────────────────────
+    // ── ASGARD pairs ──────────────────────────────────────────────────────
     public static List<Pair<Climate.ParameterPoint, Holder<Biome>>>
     asgardPairs(HolderGetter<Biome> getter) {
         return List.of(
@@ -89,7 +94,7 @@ public class ModBiomes {
                 getter.getOrThrow(JADE_RIVER_KARST)),
             Pair.of(params(r(0.4f,0.8f),  r(0.5f,1.0f),  r(0.3f,0.7f),   r(-0.7f,-0.2f), r(-0.9f,-0.4f)),
                 getter.getOrThrow(HEAVEN_PILLAR_FOREST)),
-            // Sky Piercer — ultra-tight window ensures ~1 occurrence per world
+            // Sky Piercer — ultra-tight window for ~1 per world
             Pair.of(params(r(0.6f,0.8f),  r(-0.1f,0.2f), r(0.88f,1.0f),  r(-1.0f,-0.85f),r(0.85f,1.0f)),
                 getter.getOrThrow(SKY_PIERCER))
         );

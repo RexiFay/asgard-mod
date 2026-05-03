@@ -11,6 +11,8 @@ import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.dimension.LevelStem;
 import net.minecraft.world.level.levelgen.*;
+import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
+import net.minecraft.world.level.levelgen.SurfaceRules;
 import net.minecraftforge.common.data.DatapackBuiltinEntriesProvider;
 
 import java.util.List;
@@ -28,22 +30,21 @@ public class ModWorldgenProvider extends DatapackBuiltinEntriesProvider {
         super(output, provider, BUILDER, Set.of("asgardmod"));
     }
 
-    // ── Noise / Surface Rules ──────────────────────────────────────────────
-    private static void bootstrapNoise(
-            BootstapContext<NoiseGeneratorSettings> ctx) {
+    private static void bootstrapNoise(BootstapContext<NoiseGeneratorSettings> ctx) {
 
-        // ── GOD'S DOMAIN ───────────────────────────────────────────────────
-        // Always peaceful: no aquifers, no ore veins, flat smooth terrain
+        // ── GOD'S DOMAIN surface rules ────────────────────────────────────
+        // ON_FLOOR  = top surface block (depth 0, no add_surface_depth)
+        // UNDER_FLOOR = sub-surface block (depth 0, add_surface_depth = true)
         SurfaceRules.RuleSource godsDomainSurface = SurfaceRules.sequence(
             SurfaceRules.ifTrue(
                 SurfaceRules.abovePreliminarySurface(),
                 SurfaceRules.sequence(
                     SurfaceRules.ifTrue(
-                        SurfaceRules.stoneDepthCheck(0, false, CaveSurface.FLOOR),
+                        SurfaceRules.ON_FLOOR,
                         SurfaceRules.state(ModBlocks.DIVINE_GRASS.get().defaultBlockState())
                     ),
                     SurfaceRules.ifTrue(
-                        SurfaceRules.stoneDepthCheck(0, true, CaveSurface.FLOOR),
+                        SurfaceRules.UNDER_FLOOR,
                         SurfaceRules.state(ModBlocks.DIVINE_STONE.get().defaultBlockState())
                     )
                 )
@@ -51,57 +52,53 @@ public class ModWorldgenProvider extends DatapackBuiltinEntriesProvider {
             SurfaceRules.state(ModBlocks.DIVINE_STONE.get().defaultBlockState())
         );
 
-        ctx.register(ModDimensions.GODS_DOMAIN_NOISE, new NoiseGeneratorSettings(
+        ctx.register(ModDimensions.GODS_DOMAIN_NOISE, NoiseGeneratorSettings.overworld(
+            ctx,
             new NoiseSettings(0, 256, 1, 2),
             ModBlocks.DIVINE_STONE.get().defaultBlockState(),
             Blocks.WATER.defaultBlockState(),
-            NoiseRouter.SURFACE,
             godsDomainSurface,
-            List.of(),   // spawnTarget
-            63,          // seaLevel
-            true,        // disableMobGeneration — always peaceful
-            false,       // aquifersEnabled
-            false,       // oreVeinsEnabled
-            false        // legacyRandomSource
+            63,     // seaLevel
+            true,   // disableMobGeneration — peaceful dimension
+            false,  // aquifersEnabled
+            false,  // oreVeinsEnabled
+            false   // legacyRandomSource
         ));
 
-        // ── ASGARD ─────────────────────────────────────────────────────────
-        // Jade Peaks + Sky Piercer → jade block surface; all others → asgard grass
+        // ── ASGARD surface rules ──────────────────────────────────────────
         SurfaceRules.RuleSource asgardSurface = SurfaceRules.sequence(
             SurfaceRules.ifTrue(
                 SurfaceRules.abovePreliminarySurface(),
                 SurfaceRules.sequence(
-                    // Jade/Sky Piercer biomes: jade block on top
+                    // Jade Peaks + Sky Piercer: jade block on surface
                     SurfaceRules.ifTrue(
                         SurfaceRules.isBiome(ModBiomes.JADE_PEAKS, ModBiomes.SKY_PIERCER),
                         SurfaceRules.ifTrue(
-                            SurfaceRules.stoneDepthCheck(0, false, CaveSurface.FLOOR),
+                            SurfaceRules.ON_FLOOR,
                             SurfaceRules.state(ModBlocks.JADE_BLOCK.get().defaultBlockState())
                         )
                     ),
-                    // Universal top layer: asgard grass
+                    // All other biomes: asgard grass on top
                     SurfaceRules.ifTrue(
-                        SurfaceRules.stoneDepthCheck(0, false, CaveSurface.FLOOR),
+                        SurfaceRules.ON_FLOOR,
                         SurfaceRules.state(ModBlocks.ASGARD_GRASS.get().defaultBlockState())
                     ),
                     // Sub-surface: asgard dirt
                     SurfaceRules.ifTrue(
-                        SurfaceRules.stoneDepthCheck(0, true, CaveSurface.FLOOR),
+                        SurfaceRules.UNDER_FLOOR,
                         SurfaceRules.state(ModBlocks.ASGARD_DIRT.get().defaultBlockState())
                     )
                 )
             ),
-            // Deep stone fallback
             SurfaceRules.state(ModBlocks.JADE_STONE.get().defaultBlockState())
         );
 
-        ctx.register(ModDimensions.ASGARD_NOISE, new NoiseGeneratorSettings(
+        ctx.register(ModDimensions.ASGARD_NOISE, NoiseGeneratorSettings.overworld(
+            ctx,
             new NoiseSettings(-64, 384, 1, 2),
             ModBlocks.JADE_STONE.get().defaultBlockState(),
             Blocks.WATER.defaultBlockState(),
-            NoiseRouter.SURFACE,
             asgardSurface,
-            List.of(),
             40,    // seaLevel — deep oceans
             false, // disableMobGeneration
             true,  // aquifersEnabled
