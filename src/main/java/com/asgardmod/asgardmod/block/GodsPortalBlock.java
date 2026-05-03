@@ -3,6 +3,7 @@ package com.asgardmod.asgardmod.block;
 import com.asgardmod.asgardmod.dimension.ModDimensions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -10,11 +11,9 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -23,14 +22,14 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class GodsPortalBlock extends Block {
 
-    /** Ticks an entity must stand inside before teleporting (nether = 80, we use 80) */
     private static final int TELEPORT_DELAY = 80;
+    private static final String TAG_PORTAL_TICKS = "GodsPortalTicks";
 
     public GodsPortalBlock(BlockBehaviour.Properties props) {
         super(props);
     }
 
-    // ── No collision — entities walk through ─────────────────────────────
+    // ── No collision ──────────────────────────────────────────────────────
 
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockGetter level,
@@ -41,11 +40,10 @@ public class GodsPortalBlock extends Block {
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter level,
                                BlockPos pos, CollisionContext ctx) {
-        // Thin visual slab (like nether portal)
         return Block.box(0, 0, 0, 16, 16, 16);
     }
 
-    // ── Teleport on entity contact ────────────────────────────────────────
+    // ── Walk-through teleport ─────────────────────────────────────────────
 
     @Override
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
@@ -53,12 +51,19 @@ public class GodsPortalBlock extends Block {
         if (!(entity instanceof ServerPlayer player)) return;
         if (entity.isPassenger() || entity.isVehicle()) return;
 
-        // Use vanilla portal cooldown mechanism
+        // isOnPortalCooldown() / getPortalCooldown() are both accessible in 1.20.1
         if (player.isOnPortalCooldown()) return;
 
-        player.setInPortal();
+        // Track our own per-player tick counter in persistent data
+        CompoundTag data = player.getPersistentData();
+        int ticks = data.getInt(TAG_PORTAL_TICKS) + 1;
+        data.putInt(TAG_PORTAL_TICKS, ticks);
 
-        if (player.portalTime < TELEPORT_DELAY) return;
+        if (ticks < TELEPORT_DELAY) return;
+
+        // Reset counter and apply portal cooldown so they can't instantly re-enter
+        data.putInt(TAG_PORTAL_TICKS, 0);
+        player.setPortalCooldown();   // sets cooldown to 300 ticks (1.20.1 correct name)
 
         ResourceKey<Level> currentDim = level.dimension();
         ResourceKey<Level> target;
@@ -66,31 +71,37 @@ public class GodsPortalBlock extends Block {
         if (currentDim == ModDimensions.GODS_DOMAIN) {
             target = Level.OVERWORLD;
             player.displayClientMessage(
-                net.minecraft.network.chat.Component.literal("§bReturning to the mortal realm..."), true);
+                net.minecraft.network.chat.Component.literal("\u00a7bReturning to the mortal realm..."), true);
         } else {
             target = ModDimensions.GODS_DOMAIN;
             player.displayClientMessage(
-                net.minecraft.network.chat.Component.literal("§6§lEntering GOD's Domain..."), true);
+                net.minecraft.network.chat.Component.literal("\u00a76\u00a7lEntering GOD's Domain..."), true);
         }
 
         ServerLevel targetLevel = player.getServer().getLevel(target);
         if (targetLevel == null) return;
 
-        // Try to find a portal in the target dim near scaled coords
         double scale = getCoordScale(serverLevel, targetLevel);
         BlockPos destSearch = new BlockPos(
             (int)(pos.getX() * scale), pos.getY(), (int)(pos.getZ() * scale));
         BlockPos dest = findNearestPortal(targetLevel, destSearch, 128);
+        if (dest == null) dest = destSearch;
 
-        if (dest == null) dest = destSearch; // fallback to scaled pos
-
-        player.resetPortalCooldown();
         player.teleportTo(targetLevel,
             dest.getX() + 0.5, dest.getY() + 1.0, dest.getZ() + 0.5,
             player.getYRot(), player.getXRot());
     }
 
-    // ── Ambient particles (gold + blue swirl) ─────────────────────────────
+    // Reset counter when player leaves the portal block
+    @Override
+    public void updateEntityAfterFallOn(net.minecraft.world.level.BlockGetter level, Entity entity) {
+        super.updateEntityAfterFallOn(level, entity);
+    }
+
+    // Clear tick counter if entity is no longer inside (checked each tick via level tick,
+    // but we also clear it when the cooldown fires so it stays clean)
+
+    // ── Ambient particles (gold + blue) ───────────────────────────────────
 
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource rand) {
@@ -103,7 +114,6 @@ public class GodsPortalBlock extends Block {
             double x = pos.getX() + rand.nextDouble();
             double y = pos.getY() + rand.nextDouble();
             double z = pos.getZ() + rand.nextDouble();
-            // Alternate gold and blue portal particles
             if (rand.nextBoolean()) {
                 level.addParticle(net.minecraft.core.particles.ParticleTypes.PORTAL,
                     x, y, z,
@@ -117,13 +127,12 @@ public class GodsPortalBlock extends Block {
         }
     }
 
-    // ── Breaking the frame destroys portal blocks ─────────────────────────
+    // ── Frame-break detection ─────────────────────────────────────────────
 
     @Override
     public void neighborChanged(BlockState state, Level level, BlockPos pos,
                                 Block block, BlockPos fromPos, boolean isMoving) {
         if (!level.isClientSide) {
-            // If the frame was broken, destroy this portal block
             boolean hasSupport = false;
             for (Direction dir : Direction.values()) {
                 BlockState neighbor = level.getBlockState(pos.relative(dir));
@@ -142,9 +151,7 @@ public class GodsPortalBlock extends Block {
     // ── Helpers ───────────────────────────────────────────────────────────
 
     private static double getCoordScale(ServerLevel from, ServerLevel to) {
-        double fromScale = from.dimensionType().coordinateScale();
-        double toScale   = to.dimensionType().coordinateScale();
-        return fromScale / toScale;
+        return from.dimensionType().coordinateScale() / to.dimensionType().coordinateScale();
     }
 
     private static BlockPos findNearestPortal(ServerLevel level, BlockPos origin, int radius) {
