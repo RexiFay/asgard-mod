@@ -9,10 +9,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.dimension.LevelStem;
 import net.minecraft.world.level.levelgen.*;
-import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
-import net.minecraft.world.level.levelgen.SurfaceRules;
 import net.minecraftforge.common.data.DatapackBuiltinEntriesProvider;
 
 import java.util.List;
@@ -32,9 +29,13 @@ public class ModWorldgenProvider extends DatapackBuiltinEntriesProvider {
 
     private static void bootstrapNoise(BootstapContext<NoiseGeneratorSettings> ctx) {
 
-        // ── GOD'S DOMAIN surface rules ────────────────────────────────────
-        // ON_FLOOR  = top surface block (depth 0, no add_surface_depth)
-        // UNDER_FLOOR = sub-surface block (depth 0, add_surface_depth = true)
+        // Shared noise router — we reuse the overworld noise router via
+        // NoiseRouterData.overworld(). Both dimensions use surface-style
+        // terrain; we only differ in NoiseSettings + surface rules.
+        var noises = ctx.lookup(Registries.NOISE);
+        var densityFunctions = ctx.lookup(Registries.DENSITY_FUNCTION);
+
+        // ── GOD'S DOMAIN ──────────────────────────────────────────────────
         SurfaceRules.RuleSource godsDomainSurface = SurfaceRules.sequence(
             SurfaceRules.ifTrue(
                 SurfaceRules.abovePreliminarySurface(),
@@ -52,20 +53,21 @@ public class ModWorldgenProvider extends DatapackBuiltinEntriesProvider {
             SurfaceRules.state(ModBlocks.DIVINE_STONE.get().defaultBlockState())
         );
 
-        ctx.register(ModDimensions.GODS_DOMAIN_NOISE, NoiseGeneratorSettings.overworld(
-            ctx,
+        ctx.register(ModDimensions.GODS_DOMAIN_NOISE, new NoiseGeneratorSettings(
             new NoiseSettings(0, 256, 1, 2),
             ModBlocks.DIVINE_STONE.get().defaultBlockState(),
             Blocks.WATER.defaultBlockState(),
+            NoiseRouterData.overworld(densityFunctions, noises, false, false),
             godsDomainSurface,
-            63,     // seaLevel
-            true,   // disableMobGeneration — peaceful dimension
-            false,  // aquifersEnabled
-            false,  // oreVeinsEnabled
-            false   // legacyRandomSource
+            List.of(),   // spawnTarget
+            63,          // seaLevel
+            true,        // disableMobGeneration — peaceful
+            false,       // aquifersEnabled
+            false,       // oreVeinsEnabled
+            false        // legacyRandomSource
         ));
 
-        // ── ASGARD surface rules ──────────────────────────────────────────
+        // ── ASGARD ─────────────────────────────────────────────────────────
         SurfaceRules.RuleSource asgardSurface = SurfaceRules.sequence(
             SurfaceRules.ifTrue(
                 SurfaceRules.abovePreliminarySurface(),
@@ -93,12 +95,13 @@ public class ModWorldgenProvider extends DatapackBuiltinEntriesProvider {
             SurfaceRules.state(ModBlocks.JADE_STONE.get().defaultBlockState())
         );
 
-        ctx.register(ModDimensions.ASGARD_NOISE, NoiseGeneratorSettings.overworld(
-            ctx,
+        ctx.register(ModDimensions.ASGARD_NOISE, new NoiseGeneratorSettings(
             new NoiseSettings(-64, 384, 1, 2),
             ModBlocks.JADE_STONE.get().defaultBlockState(),
             Blocks.WATER.defaultBlockState(),
+            NoiseRouterData.overworld(densityFunctions, noises, false, false),
             asgardSurface,
+            List.of(),
             40,    // seaLevel — deep oceans
             false, // disableMobGeneration
             true,  // aquifersEnabled
