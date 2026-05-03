@@ -1,0 +1,27 @@
+{
+  "precipitation": "none",
+  "temperature": 0.85,
+  "downfall": 0.05,
+  "effects": {
+    "sky_color": 8103167,
+    "fog_color": 15792383,
+    "water_color": 4159204,
+    "water_fog_color": 329011,
+    "grass_color": 11591679,
+    "foliage_color": 9756671
+  },
+  "spawners": {
+    "monster": [],
+    "creature": [
+      { "type": "minecraft:sheep", "weight": 2, "minCount": 1, "maxCount": 3 }
+    ],
+    "ambient": [],
+    "water_creature": [],
+    "water_ambient": [],
+    "misc": [],
+    "underground_water_creature": []
+  },
+  "spawn_costs": {},
+  "carvers": {},
+  "features": [[], [], [], [], [], [], [], [], [], [], []]
+}

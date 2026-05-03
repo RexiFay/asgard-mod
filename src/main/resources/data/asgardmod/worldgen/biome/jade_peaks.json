@@ -1,0 +1,33 @@
+{
+  "precipitation": "none",
+  "temperature": 0.3,
+  "downfall": 0.2,
+  "effects": {
+    "sky_color": 7972607,
+    "fog_color": 12638463,
+    "water_color": 4159204,
+    "water_fog_color": 329011,
+    "grass_color": 5635840,
+    "foliage_color": 4980736,
+    "ambient_particle": {
+      "probability": 0.0002,
+      "options": { "type": "minecraft:composter" }
+    }
+  },
+  "spawners": {
+    "monster": [
+      { "type": "minecraft:zombie", "weight": 5, "minCount": 1, "maxCount": 2 }
+    ],
+    "creature": [
+      { "type": "minecraft:goat", "weight": 3, "minCount": 1, "maxCount": 3 }
+    ],
+    "ambient": [],
+    "water_creature": [],
+    "water_ambient": [],
+    "misc": [],
+    "underground_water_creature": []
+  },
+  "spawn_costs": {},
+  "carvers": {},
+  "features": [[], [], [], [], [], [], [], [], [], [], []]
+}

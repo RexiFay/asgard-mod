@@ -1,0 +1,33 @@
+{
+  "precipitation": "none",
+  "temperature": 0.6,
+  "downfall": 0.3,
+  "effects": {
+    "sky_color": 7846655,
+    "fog_color": 16765440,
+    "water_color": 4159204,
+    "water_fog_color": 329011,
+    "grass_color": 7983872,
+    "foliage_color": 16763904,
+    "ambient_particle": {
+      "probability": 0.0004,
+      "options": { "type": "minecraft:falling_dust", "state": { "Name": "minecraft:gold_block" } }
+    }
+  },
+  "spawners": {
+    "monster": [
+      { "type": "minecraft:skeleton", "weight": 3, "minCount": 1, "maxCount": 2 }
+    ],
+    "creature": [
+      { "type": "minecraft:fox", "weight": 4, "minCount": 1, "maxCount": 2 }
+    ],
+    "ambient": [],
+    "water_creature": [],
+    "water_ambient": [],
+    "misc": [],
+    "underground_water_creature": []
+  },
+  "spawn_costs": {},
+  "carvers": {},
+  "features": [[], [], [], [], [], [], [], [], [], [], []]
+}
