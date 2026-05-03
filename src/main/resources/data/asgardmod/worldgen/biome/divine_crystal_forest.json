@@ -1,24 +1,31 @@
 {
-  "has_precipitation": false,
+  "precipitation": "none",
   "temperature": 0.7,
-  "downfall": 0.0,
+  "downfall": 0.1,
   "effects": {
-    "sky_color": 8957183,
-    "fog_color": 11001087,
-    "water_color": 2733302,
-    "water_fog_color": 161661,
-    "grass_color": 9488121,
-    "foliage_color": 6598390,
+    "sky_color": 8103167,
+    "fog_color": 14671839,
+    "water_color": 4159204,
+    "water_fog_color": 329011,
+    "grass_color": 10092543,
+    "foliage_color": 9756671,
     "ambient_particle": {
-      "probability": 0.0004,
+      "probability": 0.001,
       "options": { "type": "minecraft:enchant" }
     }
   },
   "spawners": {
-    "monster": [], "creature": [], "ambient": [],
-    "water_creature": [], "water_ambient": [], "misc": [], "underground_water_creature": []
+    "monster": [],
+    "creature": [
+      { "type": "minecraft:fox", "weight": 2, "minCount": 1, "maxCount": 2 }
+    ],
+    "ambient": [],
+    "water_creature": [],
+    "water_ambient": [],
+    "misc": [],
+    "underground_water_creature": []
   },
   "spawn_costs": {},
   "carvers": {},
-  "features": [[], [], [], [], [], [], [], [], [], [], []]
+  "features": [[],[],[],[],[],[],[],[],[],[],[]]
 }

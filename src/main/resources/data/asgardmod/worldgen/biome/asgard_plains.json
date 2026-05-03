@@ -1,20 +1,32 @@
 {
-  "has_precipitation": true,
-  "temperature": 0.8,
-  "downfall": 0.2,
+  "precipitation": "rain",
+  "temperature": 0.6,
+  "downfall": 0.3,
   "effects": {
-    "sky_color": 8037833,
-    "fog_color": 14408136,
-    "water_color": 6732138,
-    "water_fog_color": 3707452,
-    "grass_color": 11461249,
-    "foliage_color": 10276453
+    "sky_color": 7907327,
+    "fog_color": 12638463,
+    "water_color": 4159204,
+    "water_fog_color": 329011,
+    "grass_color": 7842047,
+    "foliage_color": 7907327
   },
   "spawners": {
-    "monster": [], "creature": [], "ambient": [],
-    "water_creature": [], "water_ambient": [], "misc": [], "underground_water_creature": []
+    "monster": [
+      { "type": "minecraft:zombie", "weight": 4, "minCount": 1, "maxCount": 4 },
+      { "type": "minecraft:skeleton", "weight": 4, "minCount": 1, "maxCount": 4 },
+      { "type": "minecraft:creeper", "weight": 3, "minCount": 1, "maxCount": 2 }
+    ],
+    "creature": [
+      { "type": "minecraft:horse", "weight": 4, "minCount": 2, "maxCount": 6 },
+      { "type": "minecraft:cow", "weight": 3, "minCount": 2, "maxCount": 4 }
+    ],
+    "ambient": [],
+    "water_creature": [],
+    "water_ambient": [],
+    "misc": [],
+    "underground_water_creature": []
   },
   "spawn_costs": {},
   "carvers": {},
-  "features": [[], [], [], [], [], [], [], [], [], [], []]
+  "features": [[],[],[],[],[],[],[],[],[],[],[]]
 }

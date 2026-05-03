@@ -1,20 +1,32 @@
 {
-  "has_precipitation": false,
-  "temperature": 0.5,
+  "precipitation": "none",
+  "temperature": 0.4,
   "downfall": 0.1,
   "effects": {
-    "sky_color": 9873407,
-    "fog_color": 13684184,
-    "water_color": 4545124,
-    "water_fog_color": 2513464,
-    "grass_color": 9478318,
-    "foliage_color": 7901852
+    "sky_color": 7249663,
+    "fog_color": 12638463,
+    "water_color": 4159204,
+    "water_fog_color": 329011,
+    "grass_color": 6723891,
+    "foliage_color": 6723891,
+    "ambient_particle": {
+      "probability": 0.0003,
+      "options": { "type": "minecraft:ash" }
+    }
   },
   "spawners": {
-    "monster": [], "creature": [], "ambient": [],
-    "water_creature": [], "water_ambient": [], "misc": [], "underground_water_creature": []
+    "monster": [
+      { "type": "minecraft:skeleton", "weight": 8, "minCount": 1, "maxCount": 4 },
+      { "type": "minecraft:zombie", "weight": 5, "minCount": 1, "maxCount": 4 }
+    ],
+    "creature": [],
+    "ambient": [],
+    "water_creature": [],
+    "water_ambient": [],
+    "misc": [],
+    "underground_water_creature": []
   },
   "spawn_costs": {},
   "carvers": {},
-  "features": [[], [], [], [], [], [], [], [], [], [], []]
+  "features": [[],[],[],[],[],[],[],[],[],[],[]]
 }

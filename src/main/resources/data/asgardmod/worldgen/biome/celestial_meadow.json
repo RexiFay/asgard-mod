@@ -1,5 +1,5 @@
 {
-  "has_precipitation": false,
+  "precipitation": "none",
   "temperature": 0.8,
   "downfall": 0.0,
   "effects": {
@@ -10,15 +10,22 @@
     "grass_color": 11591679,
     "foliage_color": 9756671,
     "ambient_particle": {
-      "probability": 0.0006,
+      "probability": 0.0005,
       "options": { "type": "minecraft:end_rod" }
     }
   },
   "spawners": {
-    "monster": [], "creature": [], "ambient": [],
-    "water_creature": [], "water_ambient": [], "misc": [], "underground_water_creature": []
+    "monster": [],
+    "creature": [
+      { "type": "minecraft:horse", "weight": 3, "minCount": 1, "maxCount": 4 }
+    ],
+    "ambient": [],
+    "water_creature": [],
+    "water_ambient": [],
+    "misc": [],
+    "underground_water_creature": []
   },
   "spawn_costs": {},
   "carvers": {},
-  "features": [[], [], [], [], [], [], [], [], [], [], []]
+  "features": [[],[],[],[],[],[],[],[],[],[],[]]
 }
