@@ -64,8 +64,21 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PURPLE).requiresCorrectToolForDrops().strength(5.0f, 25.0f).sound(SoundType.AMETHYST).lightLevel(s -> 8).noOcclusion()));
     public static final RegistryObject<Block> ANCIENT_IRON = registerBlock("ancient_iron",
             () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).requiresCorrectToolForDrops().strength(5.0f, 20.0f).sound(SoundType.METAL)));
+
+    // ── PORTAL BLOCKS ──────────────────────────────────────────────────────
+    // GodsPortalBlock — walk-through, no collision, gold/blue particles
     public static final RegistryObject<Block> GODS_DOMAIN_PORTAL = registerBlock("gods_domain_portal",
-            () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_BLUE).strength(-1.0f, 3600000.0f).sound(SoundType.GLASS).noOcclusion().lightLevel(s -> 11)));
+            () -> new GodsPortalBlock(
+                BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.COLOR_LIGHT_BLUE)
+                    .strength(-1.0f, 3600000.0f)
+                    .sound(SoundType.GLASS)
+                    .noOcclusion()
+                    .noCollission()
+                    .lightLevel(s -> 11)
+            ));
+
+    // Asgard portal (unchanged)
     public static final RegistryObject<Block> ASGARD_PORTAL = registerBlock("asgard_portal",
             () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.GOLD).strength(-1.0f, 3600000.0f).sound(SoundType.GLASS).noOcclusion().lightLevel(s -> 11)));
 
