@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "asgardmod:block/celestial_marble_pillar_top",
+    "side": "asgardmod:block/celestial_marble_pillar"
+  }
+}

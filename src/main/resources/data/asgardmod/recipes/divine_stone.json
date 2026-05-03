@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    { "item": "minecraft:calcite" },
+    { "item": "minecraft:quartz" }
+  ],
+  "result": { "item": "asgardmod:divine_stone", "count": 1 }
+}

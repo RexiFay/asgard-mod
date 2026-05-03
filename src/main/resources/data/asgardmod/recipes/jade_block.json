@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "JJJ",
+    "JJJ",
+    "JJJ"
+  ],
+  "key": {
+    "J": { "item": "asgardmod:jade_gem" }
+  },
+  "result": { "item": "asgardmod:jade_block", "count": 1 }
+}

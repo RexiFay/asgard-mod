@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "asgardmod:block/asgard_grass_top",
+    "side": "asgardmod:block/asgard_grass_side",
+    "bottom": "asgardmod:block/jade_stone"
+  }
+}

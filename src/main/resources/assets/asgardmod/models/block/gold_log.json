@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "asgardmod:block/gold_log_top",
+    "side": "asgardmod:block/gold_log"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "NEN",
+    "EAE",
+    "NEN"
+  ],
+  "key": {
+    "N": { "item": "minecraft:netherite_ingot" },
+    "E": { "item": "minecraft:emerald" },
+    "A": { "item": "minecraft:amethyst_block" }
+  },
+  "result": { "item": "asgardmod:asgard_portal", "count": 4 }
+}
