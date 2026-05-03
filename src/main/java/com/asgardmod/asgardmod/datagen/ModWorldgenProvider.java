@@ -3,7 +3,6 @@ package com.asgardmod.asgardmod.datagen;
 import com.asgardmod.asgardmod.block.ModBlocks;
 import com.asgardmod.asgardmod.dimension.ModDimensions;
 import com.asgardmod.asgardmod.world.ModBiomes;
-import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
@@ -11,7 +10,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.*;
-import net.minecraft.world.level.levelgen.presets.WorldPresets;
+import net.minecraft.world.level.levelgen.synth.NormalNoise;
 import net.minecraftforge.common.data.DatapackBuiltinEntriesProvider;
 
 import java.util.List;
@@ -29,18 +28,37 @@ public class ModWorldgenProvider extends DatapackBuiltinEntriesProvider {
         super(output, provider, BUILDER, Set.of("asgardmod"));
     }
 
+    /**
+     * Build a safe NoiseRouter with all density functions set to zero.
+     * This produces flat base terrain; the NoiseSettings height/size params
+     * and surface rules handle the rest. Avoids touching the protected
+     * NoiseRouterData.overworld() and avoids calling .value() on unresolved
+     * Holders during bootstrap.
+     */
+    private static NoiseRouter flatRouter() {
+        DensityFunction zero = DensityFunctions.zero();
+        return new NoiseRouter(
+            zero, // barrierNoise
+            zero, // fluidLevelFloodednessNoise
+            zero, // fluidLevelSpreadNoise
+            zero, // lavaNoise
+            zero, // temperature
+            zero, // vegetation
+            zero, // continents
+            zero, // erosion
+            zero, // depth
+            zero, // ridges
+            zero, // initialDensityWithoutJaggedness
+            zero, // finalDensity
+            zero, // veinToggle
+            zero, // veinRidged
+            zero  // veinGap
+        );
+    }
+
     private static void bootstrapNoise(BootstapContext<NoiseGeneratorSettings> ctx) {
 
-        // Borrow the noise router from vanilla overworld settings.
-        // NoiseRouterData.overworld() is protected; the safe public way
-        // is to look up the already-registered overworld NoiseGeneratorSettings
-        // and reuse its NoiseRouter directly.
-        HolderGetter<NoiseGeneratorSettings> noiseSettingsGetter =
-            ctx.lookup(Registries.NOISE_SETTINGS);
-        NoiseRouter borrowedRouter = noiseSettingsGetter
-            .getOrThrow(NoiseGeneratorSettings.OVERWORLD)
-            .value()
-            .noiseRouter();
+        NoiseRouter router = flatRouter();
 
         // ── GOD'S DOMAIN surface rules ───────────────────────────────────
         SurfaceRules.RuleSource godsDomainSurface = SurfaceRules.sequence(
@@ -64,7 +82,7 @@ public class ModWorldgenProvider extends DatapackBuiltinEntriesProvider {
             new NoiseSettings(0, 256, 1, 2),
             ModBlocks.DIVINE_STONE.get().defaultBlockState(),
             Blocks.WATER.defaultBlockState(),
-            borrowedRouter,
+            router,
             godsDomainSurface,
             List.of(),   // spawnTarget
             63,          // seaLevel
@@ -106,10 +124,10 @@ public class ModWorldgenProvider extends DatapackBuiltinEntriesProvider {
             new NoiseSettings(-64, 384, 1, 2),
             ModBlocks.JADE_STONE.get().defaultBlockState(),
             Blocks.WATER.defaultBlockState(),
-            borrowedRouter,
+            router,
             asgardSurface,
             List.of(),
-            40,    // seaLevel — deep oceans
+            40,    // seaLevel
             false, // disableMobGeneration
             true,  // aquifersEnabled
             true,  // oreVeinsEnabled
