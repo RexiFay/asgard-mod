@@ -1,0 +1,31 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="MIT"
+issueTrackerURL="https://github.com/RexiFay/asgard-mod/issues"
+
+[[mods]]
+    modId="asgardmod"
+    version="1.0.0"
+    displayName="Asgard Mod"
+    description='''
+Adds two god-tier dimensions: GOD's Domain — a peaceful heavenly realm with a grand castle,
+and Asgard — a majestic world of jade mountains, golden forests, sky-piercing plateaus,
+Guilin karst peaks, and mystical convergence arrays.
+    '''
+    logoFile="asgardmod.png"
+    authors="AsgardModDev"
+    displayURL="https://github.com/RexiFay/asgard-mod"
+
+[[dependencies.asgardmod]]
+    modId="forge"
+    mandatory=true
+    versionRange="[47,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.asgardmod]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.20.1,1.21)"
+    ordering="NONE"
+    side="BOTH"
