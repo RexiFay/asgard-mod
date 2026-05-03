@@ -1,0 +1,41 @@
+package com.asgardmod.asgardmod.world.feature;
+
+import com.asgardmod.asgardmod.AsgardMod;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.registries.DeferredRegister;
+
+public class ModConfiguredFeatures {
+    public static final DeferredRegister<ConfiguredFeature<?, ?>> CONFIGURED_FEATURES =
+            DeferredRegister.create(Registries.CONFIGURED_FEATURE, AsgardMod.MOD_ID);
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> SWORD_STATUE_KEY =
+            ResourceKey.create(Registries.CONFIGURED_FEATURE,
+                    new ResourceLocation(AsgardMod.MOD_ID, "sword_statue"));
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> JADE_SPIKE_KEY =
+            ResourceKey.create(Registries.CONFIGURED_FEATURE,
+                    new ResourceLocation(AsgardMod.MOD_ID, "jade_spike"));
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> CONVERGENCE_ARRAY_KEY =
+            ResourceKey.create(Registries.CONFIGURED_FEATURE,
+                    new ResourceLocation(AsgardMod.MOD_ID, "convergence_array"));
+
+    public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> ctx) {
+        ctx.register(SWORD_STATUE_KEY,
+                new ConfiguredFeature<>(ModFeatures.SWORD_STATUE.get(), NoneFeatureConfiguration.INSTANCE));
+        ctx.register(JADE_SPIKE_KEY,
+                new ConfiguredFeature<>(ModFeatures.JADE_SPIKE.get(), NoneFeatureConfiguration.INSTANCE));
+        ctx.register(CONVERGENCE_ARRAY_KEY,
+                new ConfiguredFeature<>(ModFeatures.CONVERGENCE_ARRAY.get(), NoneFeatureConfiguration.INSTANCE));
+    }
+
+    public static void register(IEventBus eventBus) {
+        CONFIGURED_FEATURES.register(eventBus);
+    }
+}
