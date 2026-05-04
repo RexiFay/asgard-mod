@@ -21,6 +21,9 @@ public class ModFeatures {
     public static final RegistryObject<Feature<NoneFeatureConfiguration>> CONVERGENCE_ARRAY =
             FEATURES.register("convergence_array", () -> new ConvergenceArrayFeature(NoneFeatureConfiguration.CODEC));
 
+    public static final RegistryObject<Feature<NoneFeatureConfiguration>> SKY_VILLAGE =
+            FEATURES.register("sky_village", () -> new SkyVillageFeature(NoneFeatureConfiguration.CODEC));
+
     public static void register(IEventBus eventBus) {
         FEATURES.register(eventBus);
     }

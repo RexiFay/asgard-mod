@@ -26,6 +26,10 @@ public class ModConfiguredFeatures {
             ResourceKey.create(Registries.CONFIGURED_FEATURE,
                     new ResourceLocation(AsgardMod.MOD_ID, "convergence_array"));
 
+    public static final ResourceKey<ConfiguredFeature<?, ?>> SKY_VILLAGE_KEY =
+            ResourceKey.create(Registries.CONFIGURED_FEATURE,
+                    new ResourceLocation(AsgardMod.MOD_ID, "sky_village"));
+
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> ctx) {
         ctx.register(SWORD_STATUE_KEY,
                 new ConfiguredFeature<>(ModFeatures.SWORD_STATUE.get(), NoneFeatureConfiguration.INSTANCE));
@@ -33,6 +37,8 @@ public class ModConfiguredFeatures {
                 new ConfiguredFeature<>(ModFeatures.JADE_SPIKE.get(), NoneFeatureConfiguration.INSTANCE));
         ctx.register(CONVERGENCE_ARRAY_KEY,
                 new ConfiguredFeature<>(ModFeatures.CONVERGENCE_ARRAY.get(), NoneFeatureConfiguration.INSTANCE));
+        ctx.register(SKY_VILLAGE_KEY,
+                new ConfiguredFeature<>(ModFeatures.SKY_VILLAGE.get(), NoneFeatureConfiguration.INSTANCE));
     }
 
     public static void register(IEventBus eventBus) {

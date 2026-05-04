@@ -1,7 +1,6 @@
 package com.asgardmod.asgardmod.world.feature;
 
 import com.asgardmod.asgardmod.AsgardMod;
-import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.resources.ResourceKey;
@@ -29,6 +28,10 @@ public class ModPlacedFeatures {
             ResourceKey.create(Registries.PLACED_FEATURE,
                     new ResourceLocation(AsgardMod.MOD_ID, "convergence_array_placed"));
 
+    public static final ResourceKey<PlacedFeature> SKY_VILLAGE_PLACED =
+            ResourceKey.create(Registries.PLACED_FEATURE,
+                    new ResourceLocation(AsgardMod.MOD_ID, "sky_village_placed"));
+
     public static void bootstrap(BootstapContext<PlacedFeature> ctx) {
         var configuredFeatures = ctx.lookup(Registries.CONFIGURED_FEATURE);
 
@@ -48,6 +51,17 @@ public class ModPlacedFeatures {
                 configuredFeatures.getOrThrow(ModConfiguredFeatures.CONVERGENCE_ARRAY_KEY),
                 List.of(RarityFilter.onAverageOnceEvery(400), InSquarePlacement.spread(),
                         HeightmapPlacement.onHeightmap(net.minecraft.world.level.levelgen.Heightmap.Types.WORLD_SURFACE_WG),
+                        BiomeFilter.biome())));
+
+        // Sky villages: rare, float high in the sky (Y 140-200)
+        ctx.register(SKY_VILLAGE_PLACED, new PlacedFeature(
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.SKY_VILLAGE_KEY),
+                List.of(
+                        RarityFilter.onAverageOnceEvery(180),
+                        InSquarePlacement.spread(),
+                        HeightRangePlacement.uniform(
+                                net.minecraft.world.level.levelgen.VerticalAnchor.absolute(140),
+                                net.minecraft.world.level.levelgen.VerticalAnchor.absolute(200)),
                         BiomeFilter.biome())));
     }
 
