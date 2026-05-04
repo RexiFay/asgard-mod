@@ -1,17 +1,21 @@
 {
   "has_precipitation": false,
-  "temperature": 0.5,
-  "downfall": 0.1,
+  "temperature": 1.2,
+  "downfall": 0.0,
   "effects": {
-    "sky_color": 15527151,
-    "fog_color": 13619672,
-    "water_color": 4545124,
-    "water_fog_color": 2501176,
-    "grass_color": 9479342,
-    "foliage_color": 7900300
+    "sky_color": 7254015,
+    "fog_color": 12638463,
+    "water_color": 4159204,
+    "water_fog_color": 329011,
+    "grass_color": 9143129,
+    "foliage_color": 9143129
   },
   "spawners": {
-    "monster": [],
+    "monster": [
+      {"type": "minecraft:zombie",   "weight": 20, "minCount": 2, "maxCount": 4},
+      {"type": "minecraft:skeleton", "weight": 15, "minCount": 1, "maxCount": 3},
+      {"type": "minecraft:husk",     "weight": 15, "minCount": 1, "maxCount": 3}
+    ],
     "creature": [],
     "ambient": [],
     "water_creature": [],
@@ -20,20 +24,23 @@
     "underground_water_creature": []
   },
   "spawn_costs": {},
-  "carvers": {},
+  "carvers": {
+    "air": ["minecraft:cave"]
+  },
   "features": [
     [],
     [],
     [],
     [],
     [],
-    [],
+    ["minecraft:ore_coal_upper", "minecraft:ore_coal_lower", "minecraft:ore_iron_upper", "minecraft:ore_iron_small"],
     [],
     [],
     [],
     [
+      "minecraft:patch_dead_bush_2",
       "minecraft:patch_dead_bush",
-      "minecraft:patch_grass_normal"
+      "minecraft:patch_grass_sparse"
     ],
     []
   ]

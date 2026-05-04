@@ -1,48 +1,57 @@
 {
-  "has_precipitation": false,
-  "temperature": 0.85,
-  "downfall": 0.05,
+  "has_precipitation": true,
+  "temperature": 0.75,
+  "downfall": 0.5,
   "effects": {
-    "sky_color": 16776679,
-    "fog_color": 16775654,
-    "water_color": 8512250,
-    "water_fog_color": 5227511,
-    "grass_color": 11653595,
-    "foliage_color": 8439492,
-    "ambient_particle": {"probability": 0.0002, "options": {"type": "minecraft:end_rod"}}
+    "sky_color": 8233727,
+    "fog_color": 12638463,
+    "water_color": 4159204,
+    "water_fog_color": 329011,
+    "grass_color": 11000820,
+    "foliage_color": 10790400
   },
   "spawners": {
-    "monster": [],
+    "monster": [
+      {"type": "minecraft:zombie",   "weight": 10, "minCount": 1, "maxCount": 2},
+      {"type": "minecraft:skeleton", "weight": 10, "minCount": 1, "maxCount": 2}
+    ],
     "creature": [
       {"type": "minecraft:chicken", "weight": 8, "minCount": 2, "maxCount": 5},
       {"type": "minecraft:rabbit",  "weight": 6, "minCount": 2, "maxCount": 4},
       {"type": "minecraft:parrot",  "weight": 3, "minCount": 1, "maxCount": 2},
       {"type": "minecraft:allay",   "weight": 4, "minCount": 1, "maxCount": 3}
     ],
-    "ambient": [],
+    "ambient": [{"type": "minecraft:bat", "weight": 10, "minCount": 8, "maxCount": 8}],
     "water_creature": [],
     "water_ambient": [],
     "misc": [],
     "underground_water_creature": []
   },
   "spawn_costs": {},
-  "carvers": {},
+  "carvers": {
+    "air": ["minecraft:cave", "minecraft:canyon"]
+  },
   "features": [
     [],
     [],
     [],
+    ["minecraft:disk_gravel", "minecraft:disk_clay"],
     [],
-    [],
-    [],
+    ["minecraft:ore_coal_upper", "minecraft:ore_coal_lower", "minecraft:ore_iron_upper", "minecraft:ore_iron_small", "minecraft:ore_gold", "minecraft:ore_redstone", "minecraft:ore_emerald", "minecraft:ore_lapis"],
     [],
     [],
     [],
     [
       "minecraft:trees_plains",
       "minecraft:flower_plains",
-      "minecraft:patch_grass_normal",
-      "minecraft:patch_sugar_cane"
+      "minecraft:flower_default",
+      "minecraft:patch_grass",
+      "minecraft:patch_tall_grass_2",
+      "minecraft:patch_sugar_cane",
+      "minecraft:brown_mushroom_normal",
+      "minecraft:red_mushroom_normal",
+      "minecraft:patch_pumpkin"
     ],
-    []
+    ["minecraft:spring_water", "minecraft:spring_lava"]
   ]
 }
