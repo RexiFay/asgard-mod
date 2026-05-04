@@ -1,4 +1,4 @@
 {
   "parent": "minecraft:block/cube_all",
-  "textures": { "all": "asgardmod:block/ancient_iron" }
+  "textures": { "all": "minecraft:block/iron_block" }
 }
