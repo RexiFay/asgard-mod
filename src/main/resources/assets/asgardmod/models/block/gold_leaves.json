@@ -1,4 +1,4 @@
 {
   "parent": "minecraft:block/leaves",
-  "textures": { "all": "asgardmod:block/gold_leaves" }
+  "textures": { "all": "minecraft:block/jungle_leaves" }
 }
