@@ -131,7 +131,7 @@ public class ModBiomeData {
                 ctx.lookup(Registries.CONFIGURED_CARVER));
         addBaseUndergroundFeatures(gen, pf);
         gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                pf.getOrThrow(VegetationPlacements.TREES_BIRCH));
+                pf.getOrThrow(ModPlacedFeatures.DIVINE_TREE_PLACED));
         gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
                 pf.getOrThrow(VegetationPlacements.PATCH_GRASS_JUNGLE));
         gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
@@ -156,7 +156,7 @@ public class ModBiomeData {
                 ctx.lookup(Registries.CONFIGURED_CARVER));
         addBaseUndergroundFeatures(gen, pf);
         gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                pf.getOrThrow(VegetationPlacements.TREES_PLAINS));
+                pf.getOrThrow(ModPlacedFeatures.DIVINE_TREE_PLACED));
         gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
                 pf.getOrThrow(VegetationPlacements.FLOWER_PLAINS));
         gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
@@ -181,7 +181,7 @@ public class ModBiomeData {
                 ctx.lookup(Registries.CONFIGURED_CARVER));
         addBaseUndergroundFeatures(gen, pf);
         gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                pf.getOrThrow(VegetationPlacements.TREES_SNOWY));
+                pf.getOrThrow(ModPlacedFeatures.DIVINE_TREE_PLACED));
         gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
                 pf.getOrThrow(VegetationPlacements.PATCH_GRASS_NORMAL));
         gen.addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES,
@@ -199,7 +199,7 @@ public class ModBiomeData {
                 ctx.lookup(Registries.CONFIGURED_CARVER));
         addBaseUndergroundFeatures(gen, pf);
         gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                pf.getOrThrow(VegetationPlacements.TREES_BIRCH_AND_OAK));
+                pf.getOrThrow(ModPlacedFeatures.GOLD_TREE_PLACED));
         gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
                 pf.getOrThrow(VegetationPlacements.PATCH_GRASS_FOREST));
         gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
@@ -242,7 +242,7 @@ public class ModBiomeData {
                 ctx.lookup(Registries.CONFIGURED_CARVER));
         addBaseUndergroundFeatures(gen, pf);
         gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                pf.getOrThrow(VegetationPlacements.TREES_PLAINS));
+                pf.getOrThrow(ModPlacedFeatures.DIVINE_TREE_PLACED));
         gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
                 pf.getOrThrow(VegetationPlacements.PATCH_GRASS_NORMAL));
         gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
@@ -282,7 +282,7 @@ public class ModBiomeData {
                 ctx.lookup(Registries.CONFIGURED_CARVER));
         addBaseUndergroundFeatures(gen, pf);
         gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                pf.getOrThrow(VegetationPlacements.TREES_PLAINS));
+                pf.getOrThrow(ModPlacedFeatures.DIVINE_TREE_PLACED));
         gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
                 pf.getOrThrow(VegetationPlacements.PATCH_GRASS_JUNGLE));
         gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
@@ -311,7 +311,7 @@ public class ModBiomeData {
                 ctx.lookup(Registries.CONFIGURED_CARVER));
         addBaseUndergroundFeatures(gen, pf);
         gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                pf.getOrThrow(VegetationPlacements.TREES_TAIGA));
+                pf.getOrThrow(ModPlacedFeatures.DIVINE_TREE_PLACED));
         gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
                 pf.getOrThrow(VegetationPlacements.PATCH_GRASS_TAIGA_2));
         gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
