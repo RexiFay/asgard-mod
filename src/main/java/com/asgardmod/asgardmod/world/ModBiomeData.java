@@ -5,6 +5,7 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstapContext;
+import net.minecraft.data.worldgen.placement.AquaticPlacements;
 import net.minecraft.data.worldgen.placement.VegetationPlacements;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -342,11 +343,11 @@ public class ModBiomeData {
         addBaseUndergroundFeatures(gen, pf);
 
         gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                pf.getOrThrow(VegetationPlacements.KELP_COLD));
+                pf.getOrThrow(AquaticPlacements.KELP_COLD));
         gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                pf.getOrThrow(VegetationPlacements.SEAGRASS_DEEP));
+                pf.getOrThrow(AquaticPlacements.SEAGRASS_DEEP));
         gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                pf.getOrThrow(VegetationPlacements.SEA_PICKLE));
+                pf.getOrThrow(AquaticPlacements.SEA_PICKLE));
 
         BiomeSpecialEffects effects = new BiomeSpecialEffects.Builder()
                 .fogColor(0x80CBC4).waterColor(0x00796B).waterFogColor(0x004D40)
@@ -380,7 +381,7 @@ public class ModBiomeData {
         gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
                 pf.getOrThrow(VegetationPlacements.PATCH_SUGAR_CANE));
         gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                pf.getOrThrow(VegetationPlacements.SUNFLOWER));
+                pf.getOrThrow(VegetationPlacements.PATCH_SUNFLOWER));
 
         BiomeSpecialEffects effects = new BiomeSpecialEffects.Builder()
                 .fogColor(0xDCEDC8).waterColor(0x66BB6A).waterFogColor(0x388E3C)
@@ -452,7 +453,7 @@ public class ModBiomeData {
         gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
                 pf.getOrThrow(VegetationPlacements.VINES));
         gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                pf.getOrThrow(VegetationPlacements.SEAGRASS_SWAMP));
+                pf.getOrThrow(AquaticPlacements.SEAGRASS_SWAMP));
         gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
                 pf.getOrThrow(VegetationPlacements.FLOWER_SWAMP));
 
@@ -488,11 +489,11 @@ public class ModBiomeData {
         gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
                 pf.getOrThrow(VegetationPlacements.TREES_TAIGA));
         gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                pf.getOrThrow(VegetationPlacements.TREES_GIANT_SPRUCE));
+                pf.getOrThrow(VegetationPlacements.TREES_OLD_GROWTH_SPRUCE_TAIGA));
         gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
                 pf.getOrThrow(VegetationPlacements.PATCH_GRASS_TAIGA_2));
         gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
-                pf.getOrThrow(VegetationPlacements.PATCH_FERN));
+                pf.getOrThrow(VegetationPlacements.PATCH_TAIGA_GRASS));
         gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
                 pf.getOrThrow(VegetationPlacements.PATCH_LARGE_FERN));
         gen.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION,
