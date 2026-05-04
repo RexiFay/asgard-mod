@@ -1,23 +1,26 @@
 {
   "has_precipitation": true,
-  "temperature": 0.6,
-  "downfall": 0.4,
+  "temperature": 0.7,
+  "downfall": 0.3,
   "effects": {
-    "sky_color": 7972607,
-    "fog_color": 12638463,
-    "water_color": 4159204,
-    "water_fog_color": 329011,
-    "grass_color": 9154897,
-    "foliage_color": 14329120,
-    "ambient_particle": {"probability": 0.0006, "options": {"type": "minecraft:falling_spore_blossom"}}
+    "sky_color": 16776679,
+    "fog_color": 16775393,
+    "water_color": 16765775,
+    "water_fog_color": 16749312,
+    "grass_color": 14473218,
+    "foliage_color": 16766784,
+    "ambient_particle": {"probability": 0.0002, "options": {"type": "minecraft:falling_spore_blossom"}}
   },
   "spawners": {
-    "monster": [
-      {"type": "minecraft:zombie", "weight": 4, "minCount": 1, "maxCount": 4},
-      {"type": "minecraft:skeleton", "weight": 4, "minCount": 1, "maxCount": 4}
+    "monster": [],
+    "creature": [
+      {"type": "minecraft:fox",    "weight": 4, "minCount": 1, "maxCount": 2},
+      {"type": "minecraft:rabbit", "weight": 5, "minCount": 2, "maxCount": 4},
+      {"type": "minecraft:parrot", "weight": 3, "minCount": 1, "maxCount": 2}
     ],
-    "creature": [{"type": "minecraft:fox", "weight": 3, "minCount": 1, "maxCount": 2}],
-    "ambient": [],
+    "ambient": [
+      {"type": "minecraft:bat", "weight": 4, "minCount": 1, "maxCount": 3}
+    ],
     "water_creature": [],
     "water_ambient": [],
     "misc": [],
@@ -25,5 +28,25 @@
   },
   "spawn_costs": {},
   "carvers": {},
-  "features": [[], [], [], [], [], [], [], [], [], [], []]
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "minecraft:trees_birch_and_oak",
+      "minecraft:trees_birch",
+      "minecraft:patch_grass_forest",
+      "minecraft:flower_default",
+      "minecraft:patch_tall_grass",
+      "minecraft:brown_mushroom_normal",
+      "minecraft:red_mushroom_normal"
+    ],
+    []
+  ]
 }

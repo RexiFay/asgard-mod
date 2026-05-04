@@ -1,29 +1,51 @@
 {
   "has_precipitation": true,
-  "temperature": 0.8,
-  "downfall": 0.7,
+  "temperature": 0.9,
+  "downfall": 0.9,
   "effects": {
-    "sky_color": 7842047,
-    "fog_color": 12638463,
-    "water_color": 3394611,
-    "water_fog_color": 2105376,
-    "grass_color": 6723891,
-    "foliage_color": 5635925,
-    "ambient_particle": {"probability": 0.0005, "options": {"type": "minecraft:falling_water"}}
+    "sky_color": 10931913,
+    "fog_color": 10799527,
+    "water_color": 3047986,
+    "water_fog_color": 1826336,
+    "grass_color": 6733162,
+    "foliage_color": 4412487,
+    "ambient_particle": {"probability": 0.0003, "options": {"type": "minecraft:dripping_water"}}
   },
   "spawners": {
-    "monster": [
-      {"type": "minecraft:zombie", "weight": 4, "minCount": 1, "maxCount": 4},
-      {"type": "minecraft:skeleton", "weight": 3, "minCount": 1, "maxCount": 3}
+    "monster": [],
+    "creature": [
+      {"type": "minecraft:frog", "weight": 4, "minCount": 1, "maxCount": 3}
     ],
-    "creature": [{"type": "minecraft:parrot", "weight": 3, "minCount": 1, "maxCount": 2}],
     "ambient": [],
-    "water_creature": [{"type": "minecraft:tropical_fish", "weight": 5, "minCount": 3, "maxCount": 6}],
-    "water_ambient": [],
+    "water_creature": [],
+    "water_ambient": [
+      {"type": "minecraft:salmon",        "weight": 5, "minCount": 1, "maxCount": 4},
+      {"type": "minecraft:tropical_fish", "weight": 3, "minCount": 1, "maxCount": 3}
+    ],
     "misc": [],
     "underground_water_creature": []
   },
   "spawn_costs": {},
   "carvers": {},
-  "features": [[], [], [], [], [], [], [], [], [], [], []]
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "minecraft:trees_jungle",
+      "minecraft:patch_grass_jungle",
+      "minecraft:patch_tall_grass_2",
+      "minecraft:patch_sugar_cane",
+      "minecraft:vines",
+      "minecraft:seagrass_swamp",
+      "minecraft:flower_swamp"
+    ],
+    []
+  ]
 }

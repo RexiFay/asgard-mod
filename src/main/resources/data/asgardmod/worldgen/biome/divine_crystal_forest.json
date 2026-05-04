@@ -1,20 +1,26 @@
 {
   "has_precipitation": false,
   "temperature": 0.7,
-  "downfall": 0.1,
+  "downfall": 0.0,
   "effects": {
-    "sky_color": 8103167,
-    "fog_color": 14671839,
-    "water_color": 4159204,
-    "water_fog_color": 329011,
-    "grass_color": 10092543,
-    "foliage_color": 9756671,
-    "ambient_particle": {"probability": 0.001, "options": {"type": "minecraft:enchant"}}
+    "sky_color": 14479103,
+    "fog_color": 11067647,
+    "water_color": 2733302,
+    "water_fog_color": 161725,
+    "grass_color": 9488121,
+    "foliage_color": 6598390,
+    "ambient_particle": {"probability": 0.0004, "options": {"type": "minecraft:enchant"}}
   },
   "spawners": {
     "monster": [],
-    "creature": [{"type": "minecraft:fox", "weight": 2, "minCount": 1, "maxCount": 2}],
-    "ambient": [],
+    "creature": [
+      {"type": "minecraft:fox",    "weight": 4, "minCount": 1, "maxCount": 2},
+      {"type": "minecraft:rabbit", "weight": 5, "minCount": 2, "maxCount": 4},
+      {"type": "minecraft:parrot", "weight": 3, "minCount": 1, "maxCount": 2}
+    ],
+    "ambient": [
+      {"type": "minecraft:bat", "weight": 4, "minCount": 1, "maxCount": 3}
+    ],
     "water_creature": [],
     "water_ambient": [],
     "misc": [],
@@ -22,5 +28,23 @@
   },
   "spawn_costs": {},
   "carvers": {},
-  "features": [[], [], [], [], [], [], [], [], [], [], []]
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "minecraft:trees_birch",
+      "minecraft:patch_grass_jungle",
+      "minecraft:patch_tall_grass_2",
+      "minecraft:flower_default",
+      "minecraft:vines"
+    ],
+    []
+  ]
 }
