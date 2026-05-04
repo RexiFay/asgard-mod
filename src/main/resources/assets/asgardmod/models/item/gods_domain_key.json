@@ -1,4 +1,6 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": { "layer0": "asgardmod:item/gods_domain_key" }
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "asgardmod:item/gods_domain_key"
+  }
 }
