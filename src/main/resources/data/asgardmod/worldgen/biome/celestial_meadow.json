@@ -18,9 +18,9 @@
     ],
     "creature": [
       {"type": "minecraft:chicken", "weight": 8, "minCount": 2, "maxCount": 5},
-      {"type": "minecraft:rabbit",  "weight": 6, "minCount": 2, "maxCount": 4},
-      {"type": "minecraft:parrot",  "weight": 3, "minCount": 1, "maxCount": 2},
-      {"type": "minecraft:allay",   "weight": 4, "minCount": 1, "maxCount": 3}
+      {"type": "minecraft:rabbit", "weight": 6, "minCount": 2, "maxCount": 4},
+      {"type": "minecraft:parrot", "weight": 3, "minCount": 1, "maxCount": 2},
+      {"type": "minecraft:allay", "weight": 4, "minCount": 1, "maxCount": 3}
     ],
     "ambient": [{"type": "minecraft:bat", "weight": 10, "minCount": 8, "maxCount": 8}],
     "water_creature": [],
@@ -33,26 +33,6 @@
     "air": ["minecraft:cave", "minecraft:canyon"]
   },
   "features": [
-    [],
-    [],
-    [],
-    ["minecraft:disk_gravel", "minecraft:disk_clay"],
-    [],
-    ["minecraft:ore_coal_upper", "minecraft:ore_coal_lower", "minecraft:ore_iron_upper", "minecraft:ore_iron_small", "minecraft:ore_gold", "minecraft:ore_redstone", "minecraft:ore_emerald", "minecraft:ore_lapis"],
-    [],
-    [],
-    [],
-    [
-      "minecraft:trees_meadow",
-      "minecraft:flower_meadow",
-      "minecraft:flower_default",
-      "minecraft:patch_grass_jungle",
-      "minecraft:patch_tall_grass_2",
-      "minecraft:patch_sugar_cane",
-      "minecraft:patch_pumpkin",
-      "minecraft:brown_mushroom_normal",
-      "minecraft:red_mushroom_normal"
-    ],
-    ["minecraft:spring_water", "minecraft:spring_lava"]
+    [], [], [], [], [], [], [], [], ["asgardmod:celestial_birch_celestial_meadow"], [], []
   ]
 }
