@@ -1,15 +1,9 @@
 package com.asgardmod.asgardmod.world;
 
-import com.asgardmod.asgardmod.world.feature.ModPlacedFeatures;
-import net.minecraft.core.HolderGetter;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.data.worldgen.BootstapContext;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.*;
-import net.minecraft.world.level.levelgen.GenerationStep;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 public class ModBiomeData {
 
@@ -31,7 +25,7 @@ public class ModBiomeData {
         return builder.build();
     }
 
-    /** Sky-specific mobs: phantoms removed, add allays + bats for atmosphere */
+    /** Sky-specific mobs: allays + bats for atmosphere */
     private static MobSpawnSettings skyMobs() {
         MobSpawnSettings.Builder builder = new MobSpawnSettings.Builder();
         builder.addSpawn(MobCategory.CREATURE,
@@ -43,43 +37,9 @@ public class ModBiomeData {
         return builder.build();
     }
 
-    // ── Helper to add sky village + generation features to a biome builder ──
-
-    private static void addGodsDomainFeatures(Biome.BiomeBuilder biomeBuilder,
-                                               HolderGetter<PlacedFeature> placedFeatures,
-                                               boolean skyVillage) {
-        BiomeGenerationSettings.Builder gen = new BiomeGenerationSettings.Builder(placedFeatures,
-                net.minecraft.core.HolderSet.empty());
-        if (skyVillage) {
-            gen.addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES,
-                    placedFeatures.getOrThrow(ModPlacedFeatures.SKY_VILLAGE_PLACED));
-        }
-        biomeBuilder.generationSettings(gen.build());
-    }
-
-    // ── Bootstrap entry point (called from datagen) ───────────────────────
-
-    public static void bootstrap(BootstapContext<Biome> ctx) {
-        HolderGetter<PlacedFeature> placedFeatures = ctx.lookup(Registries.PLACED_FEATURE);
-
-        ctx.register(ModBiomes.CELESTIAL_MEADOW,   buildCelestialMeadow(placedFeatures));
-        ctx.register(ModBiomes.CLOUD_PLATEAU,       buildCloudPlateau(placedFeatures));
-        ctx.register(ModBiomes.DIVINE_CRYSTAL_FOREST, buildDivineCrystalForest(placedFeatures));
-        ctx.register(ModBiomes.SACRED_HILLS,        buildSacredHills(placedFeatures));
-        ctx.register(ModBiomes.JADE_PEAKS,          buildJadePeaks(placedFeatures));
-        ctx.register(ModBiomes.GOLDEN_FOREST,       buildGoldenForest(placedFeatures));
-        ctx.register(ModBiomes.ASGARD_OCEAN,        buildAsgardOcean(placedFeatures));
-        ctx.register(ModBiomes.ASGARD_PLAINS,       buildAsgardPlains(placedFeatures));
-        ctx.register(ModBiomes.SWORD_PLAINS,        buildSwordPlains(placedFeatures));
-        ctx.register(ModBiomes.JADE_RIVER_KARST,    buildJadeRiverKarst(placedFeatures));
-        ctx.register(ModBiomes.HEAVEN_PILLAR_FOREST,buildHeavenPillarForest(placedFeatures));
-        ctx.register(ModBiomes.SKY_PIERCER,         buildSkyPiercer(placedFeatures));
-    }
-
     // ── GOD'S DOMAIN BIOMES ───────────────────────────────────────────────
 
-    public static Biome celestialMeadow() { return buildCelestialMeadow(null); }
-    private static Biome buildCelestialMeadow(HolderGetter<PlacedFeature> pf) {
+    public static Biome celestialMeadow() {
         BiomeSpecialEffects effects = new BiomeSpecialEffects.Builder()
                 .fogColor(0xC8E8FF)
                 .waterColor(0x4FC3F7)
@@ -88,20 +48,18 @@ public class ModBiomeData {
                 .grassColorOverride(0xB3E5FC)
                 .foliageColorOverride(0x81D4FA)
                 .ambientParticle(new AmbientParticleSettings(ParticleTypes.END_ROD, 0.0003f))
-                .ambientLoopSoundEvent(net.minecraft.sounds.SoundEvents.AMBIENT_CAVE)
                 .build();
-        Biome.BiomeBuilder builder = new Biome.BiomeBuilder()
+        return new Biome.BiomeBuilder()
                 .hasPrecipitation(false)
                 .temperature(0.85f)
                 .downfall(0.0f)
                 .specialEffects(effects)
                 .mobSpawnSettings(livelyMobs())
-                .generationSettings(BiomeGenerationSettings.EMPTY);
-        return builder.build();
+                .generationSettings(BiomeGenerationSettings.EMPTY)
+                .build();
     }
 
-    public static Biome cloudPlateau() { return buildCloudPlateau(null); }
-    private static Biome buildCloudPlateau(HolderGetter<PlacedFeature> pf) {
+    public static Biome cloudPlateau() {
         BiomeSpecialEffects effects = new BiomeSpecialEffects.Builder()
                 .fogColor(0xFFFFFF)
                 .waterColor(0xB3E5FC)
@@ -111,18 +69,17 @@ public class ModBiomeData {
                 .foliageColorOverride(0xB2EBF2)
                 .ambientParticle(new AmbientParticleSettings(ParticleTypes.CLOUD, 0.0002f))
                 .build();
-        Biome.BiomeBuilder builder = new Biome.BiomeBuilder()
+        return new Biome.BiomeBuilder()
                 .hasPrecipitation(false)
                 .temperature(0.9f)
                 .downfall(0.0f)
                 .specialEffects(effects)
                 .mobSpawnSettings(skyMobs())
-                .generationSettings(BiomeGenerationSettings.EMPTY);
-        return builder.build();
+                .generationSettings(BiomeGenerationSettings.EMPTY)
+                .build();
     }
 
-    public static Biome divineCrystalForest() { return buildDivineCrystalForest(null); }
-    private static Biome buildDivineCrystalForest(HolderGetter<PlacedFeature> pf) {
+    public static Biome divineCrystalForest() {
         BiomeSpecialEffects effects = new BiomeSpecialEffects.Builder()
                 .fogColor(0xA8D8FF)
                 .waterColor(0x29B6F6)
@@ -142,8 +99,7 @@ public class ModBiomeData {
                 .build();
     }
 
-    public static Biome sacredHills() { return buildSacredHills(null); }
-    private static Biome buildSacredHills(HolderGetter<PlacedFeature> pf) {
+    public static Biome sacredHills() {
         BiomeSpecialEffects effects = new BiomeSpecialEffects.Builder()
                 .fogColor(0xFFF9E6)
                 .waterColor(0x81D4FA)
@@ -163,10 +119,9 @@ public class ModBiomeData {
                 .build();
     }
 
-    // ── ASGARD BIOMES (unchanged, no mob spawns) ──────────────────────────
+    // ── ASGARD BIOMES ─────────────────────────────────────────────────────
 
-    public static Biome jadePeaks() { return buildJadePeaks(null); }
-    private static Biome buildJadePeaks(HolderGetter<PlacedFeature> pf) {
+    public static Biome jadePeaks() {
         BiomeSpecialEffects effects = new BiomeSpecialEffects.Builder()
                 .fogColor(0xB2DFDB).waterColor(0x26A69A).waterFogColor(0x00796B)
                 .skyColor(0xE0F2F1).grassColorOverride(0x80CBC4).foliageColorOverride(0x4DB6AC)
@@ -176,8 +131,7 @@ public class ModBiomeData {
                 .generationSettings(BiomeGenerationSettings.EMPTY).build();
     }
 
-    public static Biome goldenForest() { return buildGoldenForest(null); }
-    private static Biome buildGoldenForest(HolderGetter<PlacedFeature> pf) {
+    public static Biome goldenForest() {
         BiomeSpecialEffects effects = new BiomeSpecialEffects.Builder()
                 .fogColor(0xFFF8E1).waterColor(0xFFD54F).waterFogColor(0xFFB300)
                 .skyColor(0xFFFDE7).grassColorOverride(0xDCE775).foliageColorOverride(0xFFD740)
@@ -188,8 +142,7 @@ public class ModBiomeData {
                 .generationSettings(BiomeGenerationSettings.EMPTY).build();
     }
 
-    public static Biome asgardOcean() { return buildAsgardOcean(null); }
-    private static Biome buildAsgardOcean(HolderGetter<PlacedFeature> pf) {
+    public static Biome asgardOcean() {
         BiomeSpecialEffects effects = new BiomeSpecialEffects.Builder()
                 .fogColor(0x80CBC4).waterColor(0x00796B).waterFogColor(0x004D40)
                 .skyColor(0xB2EBF2).build();
@@ -198,8 +151,7 @@ public class ModBiomeData {
                 .generationSettings(BiomeGenerationSettings.EMPTY).build();
     }
 
-    public static Biome asgardPlains() { return buildAsgardPlains(null); }
-    private static Biome buildAsgardPlains(HolderGetter<PlacedFeature> pf) {
+    public static Biome asgardPlains() {
         BiomeSpecialEffects effects = new BiomeSpecialEffects.Builder()
                 .fogColor(0xDCEDC8).waterColor(0x66BB6A).waterFogColor(0x388E3C)
                 .skyColor(0xF1F8E9).grassColorOverride(0xAED581).foliageColorOverride(0x9CCC65)
@@ -209,8 +161,7 @@ public class ModBiomeData {
                 .generationSettings(BiomeGenerationSettings.EMPTY).build();
     }
 
-    public static Biome swordPlains() { return buildSwordPlains(null); }
-    private static Biome buildSwordPlains(HolderGetter<PlacedFeature> pf) {
+    public static Biome swordPlains() {
         BiomeSpecialEffects effects = new BiomeSpecialEffects.Builder()
                 .fogColor(0xCFD8DC).waterColor(0x455A64).waterFogColor(0x263238)
                 .skyColor(0xECEFF1).grassColorOverride(0x90A4AE).foliageColorOverride(0x78909C)
@@ -220,8 +171,7 @@ public class ModBiomeData {
                 .generationSettings(BiomeGenerationSettings.EMPTY).build();
     }
 
-    public static Biome jadeRiverKarst() { return buildJadeRiverKarst(null); }
-    private static Biome buildJadeRiverKarst(HolderGetter<PlacedFeature> pf) {
+    public static Biome jadeRiverKarst() {
         BiomeSpecialEffects effects = new BiomeSpecialEffects.Builder()
                 .fogColor(0xA5D6A7).waterColor(0x2E7D32).waterFogColor(0x1B5E20)
                 .skyColor(0xC8E6C9).grassColorOverride(0x66BB6A).foliageColorOverride(0x43A047)
@@ -232,8 +182,7 @@ public class ModBiomeData {
                 .generationSettings(BiomeGenerationSettings.EMPTY).build();
     }
 
-    public static Biome heavenPillarForest() { return buildHeavenPillarForest(null); }
-    private static Biome buildHeavenPillarForest(HolderGetter<PlacedFeature> pf) {
+    public static Biome heavenPillarForest() {
         BiomeSpecialEffects effects = new BiomeSpecialEffects.Builder()
                 .fogColor(0xB2EBF2).waterColor(0x0097A7).waterFogColor(0x006064)
                 .skyColor(0xE0F7FA).grassColorOverride(0x4DB6AC).foliageColorOverride(0x26A69A)
@@ -244,8 +193,7 @@ public class ModBiomeData {
                 .generationSettings(BiomeGenerationSettings.EMPTY).build();
     }
 
-    public static Biome skyPiercer() { return buildSkyPiercer(null); }
-    private static Biome buildSkyPiercer(HolderGetter<PlacedFeature> pf) {
+    public static Biome skyPiercer() {
         BiomeSpecialEffects effects = new BiomeSpecialEffects.Builder()
                 .fogColor(0xFFD54F).waterColor(0xFFB300).waterFogColor(0xFF8F00)
                 .skyColor(0xFFF8E1).grassColorOverride(0xFFCC02).foliageColorOverride(0xFFB300)
