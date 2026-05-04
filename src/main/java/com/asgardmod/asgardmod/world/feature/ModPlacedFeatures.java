@@ -32,6 +32,15 @@ public class ModPlacedFeatures {
             ResourceKey.create(Registries.PLACED_FEATURE,
                     new ResourceLocation(AsgardMod.MOD_ID, "sky_village_placed"));
 
+    // --- Custom Tree Placed Features ---
+    public static final ResourceKey<PlacedFeature> DIVINE_TREE_PLACED =
+            ResourceKey.create(Registries.PLACED_FEATURE,
+                    new ResourceLocation(AsgardMod.MOD_ID, "divine_tree_placed"));
+
+    public static final ResourceKey<PlacedFeature> GOLD_TREE_PLACED =
+            ResourceKey.create(Registries.PLACED_FEATURE,
+                    new ResourceLocation(AsgardMod.MOD_ID, "gold_tree_placed"));
+
     public static void bootstrap(BootstapContext<PlacedFeature> ctx) {
         var configuredFeatures = ctx.lookup(Registries.CONFIGURED_FEATURE);
 
@@ -57,11 +66,27 @@ public class ModPlacedFeatures {
         ctx.register(SKY_VILLAGE_PLACED, new PlacedFeature(
                 configuredFeatures.getOrThrow(ModConfiguredFeatures.SKY_VILLAGE_KEY),
                 List.of(
-                        RarityFilter.onAverageOnceEvery(180),
+                        RarityFilter.onAverageOnceEvery(80),
                         InSquarePlacement.spread(),
                         HeightRangePlacement.uniform(
                                 net.minecraft.world.level.levelgen.VerticalAnchor.absolute(140),
                                 net.minecraft.world.level.levelgen.VerticalAnchor.absolute(200)),
+                        BiomeFilter.biome())));
+
+        // Divine trees: 3 per chunk max, surface placement
+        ctx.register(DIVINE_TREE_PLACED, new PlacedFeature(
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.DIVINE_TREE_KEY),
+                List.of(CountPlacement.of(3), InSquarePlacement.spread(),
+                        SurfaceWaterDepthFilter.forMaxDepth(0),
+                        HeightmapPlacement.onHeightmap(net.minecraft.world.level.levelgen.Heightmap.Types.OCEAN_FLOOR_WG),
+                        BiomeFilter.biome())));
+
+        // Gold trees: 2 per chunk max, surface placement
+        ctx.register(GOLD_TREE_PLACED, new PlacedFeature(
+                configuredFeatures.getOrThrow(ModConfiguredFeatures.GOLD_TREE_KEY),
+                List.of(CountPlacement.of(2), InSquarePlacement.spread(),
+                        SurfaceWaterDepthFilter.forMaxDepth(0),
+                        HeightmapPlacement.onHeightmap(net.minecraft.world.level.levelgen.Heightmap.Types.OCEAN_FLOOR_WG),
                         BiomeFilter.biome())));
     }
 
