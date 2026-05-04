@@ -27,7 +27,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> DIVINE_CLOUD = registerBlock("divine_cloud",
             () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.SNOW).strength(0.3f).sound(SoundType.WOOL).noOcclusion().lightLevel(s -> 4)));
     public static final RegistryObject<Block> CELESTIAL_MARBLE = registerBlock("celestial_marble",
-            () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).requiresCorrectToolForDrops().strength(4.0f, 15.0f).sound(SoundType.CALCITE)));
+            () -> new CelestialMarbleBlock(BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).requiresCorrectToolForDrops().strength(4.0f, 15.0f).sound(SoundType.CALCITE).lightLevel(s -> s.getValue(CelestialMarbleBlock.ACTIVATED) ? 10 : 0)));
     public static final RegistryObject<Block> CELESTIAL_MARBLE_PILLAR = registerBlock("celestial_marble_pillar",
             () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).requiresCorrectToolForDrops().strength(4.0f, 15.0f).sound(SoundType.CALCITE)));
     public static final RegistryObject<Block> DIVINE_WOOD_LOG = registerBlock("divine_wood_log",
@@ -66,7 +66,6 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).requiresCorrectToolForDrops().strength(5.0f, 20.0f).sound(SoundType.METAL)));
 
     // ── PORTAL BLOCKS ──────────────────────────────────────────────────────
-    // GodsPortalBlock — walk-through, no collision, gold/blue particles
     public static final RegistryObject<Block> GODS_DOMAIN_PORTAL = registerBlock("gods_domain_portal",
             () -> new GodsPortalBlock(
                 BlockBehaviour.Properties.of()
@@ -78,7 +77,6 @@ public class ModBlocks {
                     .lightLevel(s -> 11)
             ));
 
-    // Asgard portal (unchanged)
     public static final RegistryObject<Block> ASGARD_PORTAL = registerBlock("asgard_portal",
             () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.GOLD).strength(-1.0f, 3600000.0f).sound(SoundType.GLASS).noOcclusion().lightLevel(s -> 11)));
 

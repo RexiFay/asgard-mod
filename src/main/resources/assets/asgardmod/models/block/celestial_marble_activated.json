@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "asgardmod:block/celestial_marble"
+    "all": "asgardmod:block/celestial_marble_activated"
   }
 }

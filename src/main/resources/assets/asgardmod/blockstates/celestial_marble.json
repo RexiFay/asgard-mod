@@ -1,1 +1,6 @@
-{ "variants": { "": { "model": "asgardmod:block/celestial_marble" } } }
+{
+  "variants": {
+    "activated=false": { "model": "asgardmod:block/celestial_marble" },
+    "activated=true":  { "model": "asgardmod:block/celestial_marble_activated" }
+  }
+}
