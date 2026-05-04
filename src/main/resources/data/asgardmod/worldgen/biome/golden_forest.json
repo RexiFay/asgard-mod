@@ -12,14 +12,14 @@
   },
   "spawners": {
     "monster": [
-      {"type": "minecraft:zombie",   "weight": 10, "minCount": 1, "maxCount": 2},
+      {"type": "minecraft:zombie", "weight": 10, "minCount": 1, "maxCount": 2},
       {"type": "minecraft:skeleton", "weight": 10, "minCount": 1, "maxCount": 2}
     ],
     "creature": [
-      {"type": "minecraft:fox",    "weight": 5, "minCount": 2, "maxCount": 4},
-      {"type": "minecraft:rabbit","weight": 6, "minCount": 2, "maxCount": 4},
-      {"type": "minecraft:parrot","weight": 3, "minCount": 1, "maxCount": 2},
-      {"type": "minecraft:bat",   "weight": 4, "minCount": 2, "maxCount": 4}
+      {"type": "minecraft:fox", "weight": 5, "minCount": 2, "maxCount": 4},
+      {"type": "minecraft:rabbit", "weight": 6, "minCount": 2, "maxCount": 4},
+      {"type": "minecraft:parrot", "weight": 3, "minCount": 1, "maxCount": 2},
+      {"type": "minecraft:bat", "weight": 4, "minCount": 2, "maxCount": 4}
     ],
     "ambient": [{"type": "minecraft:bat", "weight": 10, "minCount": 8, "maxCount": 8}],
     "water_creature": [],
@@ -32,27 +32,6 @@
     "air": ["minecraft:cave", "minecraft:canyon"]
   },
   "features": [
-    [],
-    [],
-    [],
-    ["minecraft:disk_gravel", "minecraft:disk_clay"],
-    [],
-    ["minecraft:ore_coal_upper", "minecraft:ore_coal_lower", "minecraft:ore_iron_upper", "minecraft:ore_iron_small", "minecraft:ore_gold_extra", "minecraft:ore_gold", "minecraft:ore_redstone", "minecraft:ore_lapis"],
-    [],
-    [],
-    [],
-    [
-      "minecraft:trees_birch_and_oak",
-      "minecraft:trees_birch",
-      "minecraft:flower_default",
-      "minecraft:flower_forest_flowers",
-      "minecraft:patch_grass",
-      "minecraft:patch_tall_grass_2",
-      "minecraft:brown_mushroom_normal",
-      "minecraft:red_mushroom_normal",
-      "minecraft:patch_pumpkin",
-      "minecraft:patch_sugar_cane"
-    ],
-    ["minecraft:spring_water", "minecraft:spring_lava"]
+    [], [], [], [], [], [], [], [], ["asgardmod:gold_tree_golden_forest"], [], []
   ]
 }
