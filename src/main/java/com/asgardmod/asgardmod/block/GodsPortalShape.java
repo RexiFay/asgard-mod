@@ -33,8 +33,6 @@ public class GodsPortalShape {
         this.axis     = axis;
         this.rightDir = axis == Direction.Axis.X ? Direction.EAST : Direction.SOUTH;
 
-        // If the clicked block is a frame block, step into the interior first.
-        // Try each face perpendicular to the portal axis until we find an air/portal cell.
         BlockPos searchStart = findInteriorStart(startPos);
         if (searchStart != null) {
             this.bottomLeft = findBottomLeft(searchStart);
@@ -55,23 +53,15 @@ public class GodsPortalShape {
         return null;
     }
 
-    // ── Interior start resolution ───────────────────────────────────────────
+    // ── Interior start resolution ─────────────────────────────────────────
 
-    /**
-     * If pos is already air/portal, return it directly.
-     * If pos is a frame block, try the four faces that are NOT along the
-     * portal axis (up, down, left, right within the frame plane) to find
-     * an adjacent interior cell. Also try the two depth faces (along the
-     * axis) in case the player clicked the very edge.
-     */
     private BlockPos findInteriorStart(BlockPos pos) {
         if (isAirOrPortal(pos)) return pos;
-        // Try all 6 neighbors — return the first that is air or portal
         for (Direction dir : Direction.values()) {
             BlockPos neighbor = pos.relative(dir);
             if (isAirOrPortal(neighbor)) return neighbor;
         }
-        return null; // surrounded by non-air, give up
+        return null;
     }
 
     // ── Validity ──────────────────────────────────────────────────────────
@@ -84,12 +74,10 @@ public class GodsPortalShape {
     }
 
     private boolean hasValidFrame() {
-        // Bottom and top rows (includes corners)
         for (int w = -1; w <= width; w++) {
             if (!isFrame(bottomLeft.relative(rightDir, w).below()))       return false;
             if (!isFrame(bottomLeft.relative(rightDir, w).above(height))) return false;
         }
-        // Left and right columns
         for (int h = 0; h < height; h++) {
             if (!isFrame(bottomLeft.relative(rightDir, -1).above(h)))     return false;
             if (!isFrame(bottomLeft.relative(rightDir, width).above(h)))  return false;
@@ -117,28 +105,19 @@ public class GodsPortalShape {
 
     // ── Measurement helpers ────────────────────────────────────────────────
 
-    /**
-     * From an interior air/portal position, walk down to the bottom row
-     * then walk left (opposite of rightDir) until hitting the left wall.
-     * Returns the bottom-left interior corner.
-     */
     private BlockPos findBottomLeft(BlockPos pos) {
-        // Walk down until the block below is NOT air/portal (i.e. it's the floor frame)
         BlockPos cur = pos;
         int downSteps = 0;
         while (downSteps <= MAX_HEIGHT && isAirOrPortal(cur.below())) {
             cur = cur.below();
             downSteps++;
         }
-        // Walk left until the block to the left is NOT air/portal
         int leftSteps = 0;
         while (leftSteps <= MAX_WIDTH && isAirOrPortal(cur.relative(rightDir.getOpposite()))) {
             cur = cur.relative(rightDir.getOpposite());
             leftSteps++;
         }
-        // Verify left wall exists
         if (!isFrame(cur.relative(rightDir.getOpposite()))) return null;
-        // Verify bottom floor exists
         if (!isFrame(cur.below())) return null;
         return cur;
     }
@@ -172,10 +151,13 @@ public class GodsPortalShape {
                 level.setBlock(bottomLeft.relative(rightDir, w).above(h), portal, 18);
             }
         }
+        setFrameActivated(true);
     }
 
     public static void clearPortalBlocks(LevelAccessor level, BlockPos anyPortalPos) {
         clearConnected(level, anyPortalPos, 0);
+        // After clearing portal blocks, deactivate all adjacent marble frame blocks
+        deactivateNearbyFrame(level, anyPortalPos);
     }
 
     private static void clearConnected(LevelAccessor level, BlockPos pos, int depth) {
@@ -184,6 +166,47 @@ public class GodsPortalShape {
         level.setBlock(pos, Blocks.AIR.defaultBlockState(), 18);
         for (Direction dir : Direction.values()) {
             clearConnected(level, pos.relative(dir), depth + 1);
+        }
+    }
+
+    /**
+     * Walks outward from the portal pos and deactivates any CelestialMarble
+     * frame blocks it finds nearby (up to 25 blocks away).
+     */
+    private static void deactivateNearbyFrame(LevelAccessor level, BlockPos origin) {
+        int range = 25;
+        for (BlockPos p : BlockPos.betweenClosed(
+                origin.offset(-range, -range, -range),
+                origin.offset(range, range, range))) {
+            BlockState s = level.getBlockState(p);
+            if (s.getBlock() == ModBlocks.CELESTIAL_MARBLE.get()
+                    && s.getValue(CelestialMarbleBlock.ACTIVATED)) {
+                level.setBlock(p, s.setValue(CelestialMarbleBlock.ACTIVATED, false), 3);
+            }
+        }
+    }
+
+    /**
+     * Activates or deactivates all CelestialMarble blocks that form the frame
+     * of this portal shape.
+     */
+    private void setFrameActivated(boolean activated) {
+        // Bottom and top rows (includes corners)
+        for (int w = -1; w <= width; w++) {
+            setMarbleActivated(bottomLeft.relative(rightDir, w).below(), activated);
+            setMarbleActivated(bottomLeft.relative(rightDir, w).above(height), activated);
+        }
+        // Left and right columns
+        for (int h = 0; h < height; h++) {
+            setMarbleActivated(bottomLeft.relative(rightDir, -1).above(h), activated);
+            setMarbleActivated(bottomLeft.relative(rightDir, width).above(h), activated);
+        }
+    }
+
+    private void setMarbleActivated(BlockPos pos, boolean activated) {
+        BlockState s = level.getBlockState(pos);
+        if (s.getBlock() == ModBlocks.CELESTIAL_MARBLE.get()) {
+            level.setBlock(pos, s.setValue(CelestialMarbleBlock.ACTIVATED, activated), 3);
         }
     }
 
