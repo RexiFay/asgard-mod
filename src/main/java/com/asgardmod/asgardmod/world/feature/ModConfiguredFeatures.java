@@ -74,7 +74,7 @@ public class ModConfiguredFeatures {
         ctx.register(GOLD_TREE_KEY, new ConfiguredFeature<>(Feature.TREE,
                 new TreeConfiguration.TreeConfigurationBuilder(
                         BlockStateProvider.simple(ModBlocks.GOLD_LOG.get()),
-                        new ForkingTrunkPlacer(5, 2, 2),
+                        new ForkingTrunkPlacer(5, 2),
                         BlockStateProvider.simple(ModBlocks.GOLD_LEAVES.get()),
                         new AcaciaFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0)),
                         new TwoLayersFeatureSize(1, 0, 2)
