@@ -19,6 +19,9 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.item.Items;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 
 @Mod.EventBusSubscriber(modid = AsgardMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ModEvents {
@@ -80,5 +83,35 @@ public class ModEvents {
         player.teleportTo(target,
             origin.getX() + 0.5, origin.getY() + 1.0, origin.getZ() + 0.5,
             player.getYRot(), player.getXRot());
+    }
+    
+    /**
+     * Give portal-crafting starter materials to a player the very first time they join.
+     * Uses persistent NBT tag "asgardmod_received_starter" to ensure one-time delivery.
+     */
+        @SubscribeEvent
+    public static void onPlayerLoggedIn(PlayerEvent.PlayerLoggedInEvent event) {
+        Player player = event.getEntity();
+        if (player.level().isClientSide()) return;
+
+        CompoundTag persistentData = player.getPersistentData();
+        String TAG = "asgardmod_received_starter";
+        if (persistentData.getBoolean(TAG)) return;
+        persistentData.putBoolean(TAG, true);
+
+        // --- Asgard Portal materials ---
+        // Recipe: 4x netherite_ingot, 2x emerald, 1x amethyst_block -> 4 portals
+        player.getInventory().add(new ItemStack(Items.NETHERITE_INGOT, 4));
+        player.getInventory().add(new ItemStack(Items.EMERALD, 2));
+        player.getInventory().add(new ItemStack(Items.AMETHYST_BLOCK, 1));
+
+        // --- God's Domain Portal materials ---
+        // Recipe: 4x diamond, 2x gold_ingot, 1x amethyst_shard -> 4 portals
+        player.getInventory().add(new ItemStack(Items.DIAMOND, 4));
+        player.getInventory().add(new ItemStack(Items.GOLD_INGOT, 2));
+        player.getInventory().add(new ItemStack(Items.AMETHYST_SHARD, 1));
+
+        player.displayClientMessage(
+            Component.literal("§6[Asgard Mod] §fYou received portal-crafting starter materials!"), true);
     }
 }
