@@ -3,6 +3,8 @@ package com.asgardmod.asgardmod.datagen;
 import com.asgardmod.asgardmod.block.ModBlocks;
 import com.asgardmod.asgardmod.dimension.ModDimensions;
 import com.asgardmod.asgardmod.world.ModBiomeData;
+import com.asgardmod.asgardmod.world.feature.ModConfiguredFeatures;
+import com.asgardmod.asgardmod.world.feature.ModPlacedFeatures;
 import com.asgardmod.asgardmod.world.ModBiomes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.RegistrySetBuilder;
@@ -24,7 +26,9 @@ public class ModWorldgenProvider extends DatapackBuiltinEntriesProvider {
     public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
         .add(Registries.BIOME,          ModWorldgenProvider::bootstrapBiomes)
         .add(Registries.NOISE_SETTINGS, ModWorldgenProvider::bootstrapNoise)
-        .add(Registries.LEVEL_STEM,     ModDimensions::bootstrapStem);
+        .add(Registries.LEVEL_STEM,     ModDimensions::bootstrapStem)
+            .add(Registries.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap)
+            .add(Registries.PLACED_FEATURE,     ModPlacedFeatures::bootstrap);
 
     public ModWorldgenProvider(PackOutput output,
                                CompletableFuture<HolderLookup.Provider> provider) {
