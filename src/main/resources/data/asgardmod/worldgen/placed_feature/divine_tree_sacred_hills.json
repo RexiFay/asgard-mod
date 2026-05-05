@@ -1,8 +1,9 @@
 {
   "feature": "asgardmod:divine_tree",
   "placement": [
-    {"type": "minecraft:count", "count": 6},
+    {"type": "minecraft:count_extra", "count": 1, "extra_chance": 0.15, "extra_count": 1},
     {"type": "minecraft:in_square"},
+    {"type": "minecraft:surface_water_depth_filter", "max_water_depth": 0},
     {"type": "minecraft:heightmap", "heightmap": "MOTION_BLOCKING_NO_LEAVES"},
     {"type": "minecraft:biome"}
   ]
